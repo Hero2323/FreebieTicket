@@ -18,12 +18,16 @@ class FilterItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        color:
-            selected ? AppColors.black.withOpacity(0.2) : AppColors.transparent,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
+      child: Container(
+        decoration: BoxDecoration(
+          color: selected ? AppColors.black.withOpacity(0.2) : AppColors.white,
+          borderRadius: const BorderRadius.all(Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.grey.withOpacity(0.2),
+              spreadRadius: 0.5, //extend the shadow
+            ),
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(8),

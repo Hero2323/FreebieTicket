@@ -92,10 +92,13 @@ class HomeScreen extends StatelessWidget {
                 },
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => FilterItem(
-                    filter: filters[index],
-                    selected: ref.isSelected(index),
-                    onTap: () => ref.setSelectedFilter(index),
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: FilterItem(
+                      filter: filters[index],
+                      selected: ref.isSelected(index),
+                      onTap: () => ref.setSelectedFilter(index),
+                    ),
                   ),
                   separatorBuilder: (context, index) =>
                       const SizedBox(width: 8),

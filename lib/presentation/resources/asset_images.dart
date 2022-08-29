@@ -21,4 +21,5 @@ class AssetImages {
   static const String genre = '${imagesBaseUrl}genre.png';
   static const String upcoming = '${imagesBaseUrl}upcoming.png';
   static const String moreUpcoming = '${imagesBaseUrl}more_upcoming.png';
+  static const String noTickets = '${imagesBaseUrl}no_tickets.png';
 }

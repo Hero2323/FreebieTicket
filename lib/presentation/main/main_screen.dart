@@ -5,6 +5,7 @@ import 'package:ticket_app/presentation/resources/asset_images.dart';
 
 import '../home/home_screen.dart';
 import '../styles/app_colors.dart';
+import '../tickets/tickets_screen.dart';
 
 class MainScreen extends ConsumerWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -12,10 +13,12 @@ class MainScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        centerTitle: true,
-      ),
+      appBar: ref.bottomBarIndex == 0
+          ? AppBar(
+              title: const Text('Home'),
+              centerTitle: true,
+            )
+          : null,
       body: _tabViews[ref.bottomBarIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: ref.bottomBarIndex,
@@ -54,6 +57,6 @@ class MainScreen extends ConsumerWidget {
 List<Widget> _tabViews = [
   const HomeScreen(),
   Container(color: Colors.red),
-  Container(color: Colors.green),
+  const TicketsScreen(),
   Container(color: Colors.yellow),
 ];
