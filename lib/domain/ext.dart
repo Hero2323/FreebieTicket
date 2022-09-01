@@ -26,3 +26,16 @@ extension SelectedFilter on WidgetRef {
     }
   }
 }
+
+extension ShowMore on WidgetRef {
+  bool get showMore => watch(eventDetailsShowMoreProvider);
+  void toggleShowMore() => read(eventDetailsShowMoreProvider.notifier).state =
+      !read(eventDetailsShowMoreProvider);
+}
+
+extension UpdateNotification on WidgetRef {
+  bool get updateNotification => watch(eventDetailsUpdateNotificationProvider);
+  void toggleUpdateNotification() =>
+      read(eventDetailsUpdateNotificationProvider.notifier).state =
+          !read(eventDetailsUpdateNotificationProvider);
+}

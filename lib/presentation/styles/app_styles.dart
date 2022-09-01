@@ -38,3 +38,26 @@ TextStyle lightTicketsPopular = const TextStyle(
   color: AppColors.white,
   fontSize: 14,
 );
+
+TextStyle lightTicketDetailsTitle = const TextStyle(
+  color: AppColors.white,
+  fontSize: 28,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle lightTicketDetailsSubTitle = const TextStyle(
+  color: AppColors.white,
+  fontSize: 16,
+);
+
+TextStyle lightTicketDetailsMinorText = const TextStyle(
+  color: AppColors.grey,
+  fontSize: 10,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle lightTicketDetailsWhitePartTitle = const TextStyle(
+  color: AppColors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);

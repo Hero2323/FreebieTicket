@@ -22,4 +22,7 @@ class AssetImages {
   static const String upcoming = '${imagesBaseUrl}upcoming.png';
   static const String moreUpcoming = '${imagesBaseUrl}more_upcoming.png';
   static const String noTickets = '${imagesBaseUrl}no_tickets.png';
+  static const String eventDetails = '${imagesBaseUrl}event_details.png';
+  static const String organizer = '${imagesBaseUrl}organizer.png';
+  static const String location = '${imagesBaseUrl}location.png';
 }
