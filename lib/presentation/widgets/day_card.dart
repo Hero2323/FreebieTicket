@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 
@@ -14,24 +12,38 @@ class DayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 40,
-      height: 56,
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.grey.withOpacity(0.2),
+            spreadRadius: 1,
+          ),
+        ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            date.day.toString(),
+            getMonth(date.month).toUpperCase(),
             style: const TextStyle(
               fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: AppColors.red,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            '${date.day}',
+            style: const TextStyle(
+              fontSize: 16,
               fontWeight: FontWeight.bold,
               color: AppColors.black,
             ),
           ),
-          const SizedBox(height: 3),
+          const SizedBox(height: 5),
           Text(
             DateFormat('EEEE').format(date).substring(0, 3).toUpperCase(),
             style: const TextStyle(
@@ -43,5 +55,36 @@ class DayCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+String getMonth(int month) {
+  switch (month) {
+    case 1:
+      return 'Jan';
+    case 2:
+      return 'Feb';
+    case 3:
+      return 'Mar';
+    case 4:
+      return 'Apr';
+    case 5:
+      return 'May';
+    case 6:
+      return 'Jun';
+    case 7:
+      return 'Jul';
+    case 8:
+      return 'Aug';
+    case 9:
+      return 'Sep';
+    case 10:
+      return 'Oct';
+    case 11:
+      return 'Nov';
+    case 12:
+      return 'Dec';
+    default:
+      return 'Jan';
   }
 }

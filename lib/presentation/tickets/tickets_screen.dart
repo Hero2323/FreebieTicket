@@ -9,6 +9,8 @@ class TicketsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           flex: 3,
@@ -16,62 +18,57 @@ class TicketsScreen extends StatelessWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(AssetImages.noTickets),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
-            child: SizedBox(
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 100),
-                    Text(
-                      'Popular',
-                      style: lightTicketsTitle,
-                    ),
-                    const SizedBox(height: 25),
-                    SizedBox(
-                      height: 40,
-                      child: Expanded(
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: popular.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: AppColors.grey.withOpacity(0.5),
-                              ),
-                              height: 32,
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(20),
-                                  onTap: () {},
-                                  child: Center(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: Text(
-                                        popular[index],
-                                        style: lightTicketsPopular,
-                                      ),
-                                    ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 100),
+                  Text(
+                    'Popular',
+                    style: lightTicketsTitle,
+                  ),
+                  const SizedBox(height: 25),
+                  SizedBox(
+                    height: 40,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: popular.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: AppColors.grey.withOpacity(0.5),
+                          ),
+                          height: 32,
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(20),
+                              onTap: () {},
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Text(
+                                    popular[index],
+                                    style: lightTicketsPopular,
                                   ),
                                 ),
                               ),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(width: 16);
-                          },
-                        ),
-                      ),
+                            ),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(width: 16);
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -81,22 +78,22 @@ class TicketsScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'No Tickets Bought',
-                    style: lightTicketsMidTitle,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'It appears you haven\'t bought any tickets yet. Maybe try searching these?',
-                    textAlign: TextAlign.center,
-                    style: lightTicketsSubtitle,
-                  )
-                ],
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'No Tickets Bought',
+                      style: lightTicketsMidTitle,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'It appears you haven\'t bought any tickets yet. Maybe try searching these?',
+                      textAlign: TextAlign.center,
+                      style: lightTicketsSubtitle,
+                    )
+                  ],
+                ),
               ),
             ),
           ),

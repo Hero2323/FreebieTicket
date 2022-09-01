@@ -1,7 +1,7 @@
-import 'upcoming.dart';
+import 'event.dart';
 
 class UpcomingDayList {
-  final List<Upcoming> upcomingList;
+  final List<Event> upcomingList;
   final DateTime date;
   final String? moreUpcomingImage;
 

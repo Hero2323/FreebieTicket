@@ -14,7 +14,6 @@ class MoreUpcomingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 285,
       height: 50,
       decoration: BoxDecoration(
         image: DecorationImage(

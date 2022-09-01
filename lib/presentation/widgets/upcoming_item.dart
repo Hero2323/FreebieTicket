@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_app/domain/models/upcoming.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 import 'package:ticket_app/presentation/styles/app_styles.dart';
-import '../../domain/models/collection.dart';
+import '../../domain/models/event.dart';
 
 import '../resources/asset_images.dart';
 
 class UpcomingItem extends StatelessWidget {
-  final Upcoming upcoming;
+  final Event upcoming;
   const UpcomingItem({
     Key? key,
     required this.upcoming,
@@ -16,7 +15,6 @@ class UpcomingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 285,
       height: 170,
       decoration: BoxDecoration(
         image: const DecorationImage(
@@ -53,11 +51,11 @@ class UpcomingItem extends StatelessWidget {
                     const Image(
                       image: AssetImage(AssetImages.ticketsActive),
                       color: AppColors.grey,
-                      height: 10,
+                      height: 12.5,
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      upcoming.price,
+                      'Є${upcoming.prices[0]} - Є${upcoming.prices[upcoming.prices.length - 1]}',
                       style: lightCollectionGenre,
                     ),
                   ],

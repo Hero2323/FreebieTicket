@@ -1,4 +1,4 @@
-class Collection {
+class Event {
   final String title;
   final String description;
   final String image;
@@ -10,7 +10,7 @@ class Collection {
   final String organizer;
   final List<int> discountPrices;
 
-  Collection({
+  Event({
     required this.title,
     required this.description,
     required this.image,

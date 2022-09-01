@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/presentation/router/router_names.dart';
 import 'package:ticket_app/presentation/styles/app_styles.dart';
-import '../../domain/models/collection.dart';
+import '../../domain/models/event.dart';
 
 import '../resources/asset_images.dart';
 
 class CollectionItem extends StatelessWidget {
-  final Collection collection;
+  final Event collection;
   const CollectionItem({
     Key? key,
     required this.collection,
@@ -14,7 +15,9 @@ class CollectionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320,
+      width: MediaQuery.of(context).size.width * 0.8 > 320
+          ? 320
+          : MediaQuery.of(context).size.width * 0.8,
       decoration: BoxDecoration(
         image: const DecorationImage(
           image: AssetImage(AssetImages.collection),
@@ -26,7 +29,12 @@ class CollectionItem extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(25),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              RouterNames.eventDetailsRoute,
+              arguments: collection,
+            );
+          },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(15, 15, 15, 5),
             child: Column(
