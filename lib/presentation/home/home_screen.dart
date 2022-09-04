@@ -3,15 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ticket_app/domain/ext.dart';
-import 'package:ticket_app/domain/models/upcoming_day_list.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
-import 'package:ticket_app/presentation/widgets/upcoming_day_item.dart';
+import 'package:ticket_app/presentation/widgets/upcoming_events_item.dart';
 
-import '../../domain/models/event.dart';
-import '../../domain/models/filter.dart';
 import '../resources/asset_images.dart';
 import '../widgets/collection_item.dart';
 import '../widgets/filter_item.dart';
+import 'mock.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -162,12 +160,12 @@ class HomeScreen extends StatelessWidget {
               mainAxisSpacing: 15,
               crossAxisSpacing: 15,
               children: List.generate(
-                upcomingDayItemList.length,
+                upcomingEvents.length,
                 (index) {
-                  upcomingDayItemList.sort((a, b) => a.date.compareTo(b.date));
-                  return UpcomingDayItem(
-                    date: upcomingDayItemList[index].date,
-                    dayUpcomingList: upcomingDayItemList[index],
+                  upcomingEvents.sort((a, b) => a.date.compareTo(b.date));
+                  return UpcomingEventsItem(
+                    date: upcomingEvents[index].date,
+                    upcomingEvents: upcomingEvents[index],
                   );
                 },
               ),
@@ -178,223 +176,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-List<UpcomingDayList> upcomingDayItemList = [
-  UpcomingDayList(
-    upcomingList: [
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-    ],
-    date: DateTime.now(),
-    moreUpcomingImage: AssetImages.moreUpcoming,
-  ),
-  UpcomingDayList(
-    upcomingList: [
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-    ],
-    date: DateTime(2022, 7, 15),
-    moreUpcomingImage: AssetImages.moreUpcoming,
-  ),
-  UpcomingDayList(
-    upcomingList: [
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-    ],
-    date: DateTime(2022, 8, 12),
-    moreUpcomingImage: AssetImages.moreUpcoming,
-  ),
-  UpcomingDayList(
-    upcomingList: [
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-      Event(
-        title: 'Brightlight Music Festival',
-        genre: 'Indie Rock',
-        prices: [40, 60, 90],
-        image: AssetImages.upcoming,
-        details: 'Indie Rock',
-        date: 'Friday, 24 Aug 2019',
-        time: '6:30PM - 9:30PM',
-        location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
-        discountPrices: [30, 80],
-      ),
-    ],
-    date: DateTime(2022, 2, 1),
-    moreUpcomingImage: AssetImages.moreUpcoming,
-  ),
-];
-
-List<Event> collections = [
-  Event(
-    title: 'Electronica Next Month',
-    details: 'Free directories: directories are perfect for customers that '
-        'are searching for a particular topic. What\'s great about them is '
-        'that you only have to post once and they are good for long periods '
-        'of time. It saves a lot of your time when you don\'t have to '
-        'resubmit your information every week',
-    image: AssetImages.collection,
-    genre: 'Electronica',
-    date: 'Friday, 24 Aug 2019',
-    time: '6:30PM - 9:30PM',
-    location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-    prices: [40, 90],
-    organizer: 'Club Kiss',
-    discountPrices: [30, 80],
-  ),
-  Event(
-    title: 'Electronica Next Month',
-    details: 'Electronica',
-    image: AssetImages.collection,
-    genre: 'Electronica',
-    date: 'Friday, 24 Aug 2019',
-    time: '6:30PM - 9:30PM',
-    location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-    prices: [40, 90],
-    organizer: 'Club Kiss',
-    discountPrices: [30, 80],
-  ),
-  Event(
-    title: 'Electronica Next Month',
-    details: 'Electronica',
-    image: AssetImages.collection,
-    genre: 'Electronica',
-    date: 'Friday, 24 Aug 2019',
-    time: '6:30PM - 9:30PM',
-    location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-    prices: [40, 90],
-    organizer: 'Club Kiss',
-    discountPrices: [30, 80],
-  ),
-  Event(
-    title: 'Electronica Next Month',
-    details: 'Electronica',
-    image: AssetImages.collection,
-    genre: 'Electronica',
-    date: 'Friday, 24 Aug 2019',
-    time: '6:30PM - 9:30PM',
-    location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-    prices: [40, 90],
-    organizer: 'Club Kiss',
-    discountPrices: [30, 80],
-  ),
-];
-
-List<Filter> filters = [
-  Filter(
-    color: AppColors.red,
-    image: AssetImages.yourAreaIcon,
-    name: 'Your Area'.toUpperCase(),
-  ),
-  Filter(
-    color: AppColors.blue,
-    image: AssetImages.musicIcon,
-    name: 'Music'.toUpperCase(),
-  ),
-  Filter(
-    color: AppColors.orange,
-    image: AssetImages.sportsIcon,
-    name: 'Sports'.toUpperCase(),
-  ),
-];

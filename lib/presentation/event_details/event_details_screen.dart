@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/domain/providers.dart';
 import '../../domain/models/event.dart';
@@ -12,7 +13,8 @@ import '../styles/app_styles.dart';
 
 class EventDetailsScreen extends StatelessWidget {
   final Event event;
-  const EventDetailsScreen({
+  final ScrollController controller = ScrollController();
+  EventDetailsScreen({
     Key? key,
     required this.event,
   }) : super(key: key);
@@ -21,6 +23,7 @@ class EventDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        controller: controller,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,9 +219,9 @@ class EventDetailsScreen extends StatelessWidget {
                         Consumer(
                           builder: (context, ref, child) => TextButton(
                             onPressed: () => ref.toggleShowMore(),
-                            child: const Text(
-                              'Read more',
-                              style: TextStyle(
+                            child: Text(
+                              ref.showMore ? 'Show Less' : 'Show more',
+                              style: const TextStyle(
                                 fontSize: 15,
                                 color: AppColors.red,
                               ),
@@ -247,7 +250,87 @@ class EventDetailsScreen extends StatelessWidget {
                               ),
                             ),
                           ],
-                        )
+                        ),
+                        const SizedBox(height: 8),
+                        event.updates != null
+                            ? Consumer(
+                                builder: (context, ref, child) =>
+                                    ListView.separated(
+                                  shrinkWrap: true,
+                                  padding: EdgeInsets.zero,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) => Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        DateFormat('MMMM d, yyyy')
+                                            .format(event.updates![index].date),
+                                        style: TextStyle(
+                                          color:
+                                              AppColors.black.withOpacity(0.5),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        event.updates![index].contents,
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          color: AppColors.grey,
+                                        ),
+                                        textAlign: TextAlign.justify,
+                                        maxLines:
+                                            ref.updatesReadMore ? null : 2,
+                                        overflow: ref.updatesReadMore
+                                            ? null
+                                            : TextOverflow.ellipsis,
+                                      ),
+                                      const SizedBox(height: 16),
+                                      if (index == 0 && !ref.updatesReadMore)
+                                        TextButton(
+                                          onPressed: () {
+                                            ref.toggleUpdatesReadMore();
+                                            controller.animateTo(
+                                              0.0,
+                                              duration: const Duration(
+                                                  milliseconds: 300),
+                                              curve: Curves.easeOut,
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Show more',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: AppColors.red,
+                                            ),
+                                          ),
+                                        ),
+                                      if (index == event.updates!.length - 1 &&
+                                          ref.updatesReadMore)
+                                        TextButton(
+                                          onPressed: () =>
+                                              ref.toggleUpdatesReadMore(),
+                                          child: const Text(
+                                            'Show less',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: AppColors.red,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                  separatorBuilder: (context, index) =>
+                                      const SizedBox(height: 10),
+                                  itemCount: ref.updatesReadMore
+                                      ? event.updates!.length
+                                      : 1,
+                                ),
+                              )
+                            : const Center(child: Text('No updates yet')),
                       ],
                     ),
                   ),

@@ -1,4 +1,7 @@
+import 'update.dart';
+
 class Event {
+  final int id;
   final String title;
   final String details;
   final String image;
@@ -9,8 +12,10 @@ class Event {
   final List<int> prices;
   final String organizer;
   final List<int> discountPrices;
+  final List<Update>? updates;
 
   Event({
+    required this.id,
     required this.title,
     required this.details,
     required this.image,
@@ -21,5 +26,6 @@ class Event {
     required this.prices,
     required this.organizer,
     required this.discountPrices,
+    this.updates,
   });
 }

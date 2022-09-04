@@ -10,4 +10,8 @@ final selectedFilterProvider = StateProvider((ref) => -1);
 
 final eventDetailsShowMoreProvider = StateProvider((ref) => false);
 
-final eventDetailsUpdateNotificationProvider = StateProvider((ref) => false);
+final eventDetailsUpdateNotificationProvider =
+    StateProvider.autoDispose((ref) => false);
+
+final eventDetailsUpdatesReadMoreProvider =
+    StateProvider.autoDispose((ref) => false);

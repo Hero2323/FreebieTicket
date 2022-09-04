@@ -33,9 +33,13 @@ extension ShowMore on WidgetRef {
       !read(eventDetailsShowMoreProvider);
 }
 
-extension UpdateNotification on WidgetRef {
+extension EventUpdates on WidgetRef {
   bool get updateNotification => watch(eventDetailsUpdateNotificationProvider);
   void toggleUpdateNotification() =>
       read(eventDetailsUpdateNotificationProvider.notifier).state =
           !read(eventDetailsUpdateNotificationProvider);
+  bool get updatesReadMore => watch(eventDetailsUpdatesReadMoreProvider);
+  void toggleUpdatesReadMore() =>
+      read(eventDetailsUpdatesReadMoreProvider.notifier).state =
+          !read(eventDetailsUpdatesReadMoreProvider);
 }
