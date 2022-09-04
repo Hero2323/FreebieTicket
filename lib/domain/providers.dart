@@ -15,3 +15,6 @@ final eventDetailsUpdateNotificationProvider =
 
 final eventDetailsUpdatesReadMoreProvider =
     StateProvider.autoDispose((ref) => false);
+final selectedEventsIndexProvider = StateProvider((ref) => false);
+
+final selectedPlacesIndexProvider = StateProvider((ref) => false);

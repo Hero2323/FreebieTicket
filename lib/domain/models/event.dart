@@ -1,5 +1,4 @@
 import 'package:ticket_app/domain/models/organizer.dart';
-
 import 'update.dart';
 
 class Event {

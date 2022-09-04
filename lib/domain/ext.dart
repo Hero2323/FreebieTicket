@@ -5,6 +5,7 @@ import 'providers.dart';
 
 extension CurrentTheme on WidgetRef {
   ThemeData get theme => watch(themeProvider);
+
   void toggleTheme() => read(themeProvider) == getApplicationLightTheme()
       ? read(themeProvider.notifier).state = getApplicationDarkTheme()
       : read(themeProvider.notifier).state = getApplicationLightTheme();
@@ -12,12 +13,14 @@ extension CurrentTheme on WidgetRef {
 
 extension BottomNavigationBarIndex on WidgetRef {
   int get bottomBarIndex => watch(bottomBarIndexProvider);
+
   void setBottomBarIndex(int index) =>
       read(bottomBarIndexProvider.notifier).state = index;
 }
 
 extension SelectedFilter on WidgetRef {
   bool isSelected(int index) => watch(selectedFilterProvider) == index;
+
   void setSelectedFilter(int index) {
     if (index == read(selectedFilterProvider)) {
       read(selectedFilterProvider.notifier).state = -1;
@@ -42,4 +45,20 @@ extension EventUpdates on WidgetRef {
   void toggleUpdatesReadMore() =>
       read(eventDetailsUpdatesReadMoreProvider.notifier).state =
           !read(eventDetailsUpdatesReadMoreProvider);
+}
+
+extension SelectedEventsIndex on WidgetRef {
+  bool get updateEventsNumber => watch(selectedEventsIndexProvider);
+
+  void toggleEventsNumber() =>
+      read(selectedEventsIndexProvider.notifier).state =
+          !read(selectedEventsIndexProvider);
+}
+
+extension SelectedPlacesIndex on WidgetRef {
+  bool get updatePlacesNumber => watch(selectedPlacesIndexProvider);
+
+  void togglePlacesNumber() =>
+      read(selectedPlacesIndexProvider.notifier).state =
+          !read(selectedPlacesIndexProvider);
 }
