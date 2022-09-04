@@ -1,3 +1,5 @@
+import 'package:ticket_app/domain/models/organizer.dart';
+
 import 'update.dart';
 
 class Event {
@@ -10,9 +12,9 @@ class Event {
   final String time;
   final List<String> location;
   final List<int> prices;
-  final String organizer;
   final List<int> discountPrices;
   final List<Update>? updates;
+  final Organizer organizer;
 
   Event({
     required this.id,

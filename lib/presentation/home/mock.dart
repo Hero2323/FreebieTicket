@@ -2,6 +2,7 @@ import 'package:ticket_app/domain/models/update.dart';
 
 import '../../domain/models/event.dart';
 import '../../domain/models/filter.dart';
+import '../../domain/models/organizer.dart';
 import '../../domain/models/upcoming_events.dart';
 import '../resources/asset_images.dart';
 import '../styles/app_colors.dart';
@@ -20,7 +21,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
         updates: [
           Update(
@@ -42,7 +47,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
         updates: [
           Update(
@@ -71,7 +80,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
         updates: [
           Update(
@@ -93,7 +106,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
         updates: [
           Update(
@@ -136,7 +153,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
       ),
       Event(
@@ -149,7 +170,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
       ),
     ],
@@ -169,7 +194,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
       ),
     ],
@@ -189,7 +218,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
       ),
       Event(
@@ -202,7 +235,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
       ),
       Event(
@@ -215,7 +252,11 @@ List<UpcomingEvents> upcomingEvents = [
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
-        organizer: 'Club Kiss',
+        organizer: Organizer(
+          name: 'Club Kiss',
+          genres: ['Concerts', 'Parties'],
+          image: AssetImages.organizerIcon,
+        ),
         discountPrices: [30, 80],
       ),
     ],
@@ -239,7 +280,11 @@ List<Event> collections = [
     time: '6:30PM - 9:30PM',
     location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
     prices: [40, 90],
-    organizer: 'Club Kiss',
+    organizer: Organizer(
+      name: 'Club Kiss',
+      genres: ['Concerts', 'Parties'],
+      image: AssetImages.organizerIcon,
+    ),
     discountPrices: [30, 80],
     updates: [
       Update(
@@ -275,7 +320,11 @@ List<Event> collections = [
     time: '6:30PM - 9:30PM',
     location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
     prices: [40, 90],
-    organizer: 'Club Kiss',
+    organizer: Organizer(
+      name: 'Club Kiss',
+      genres: ['Concerts', 'Parties'],
+      image: AssetImages.organizerIcon,
+    ),
     discountPrices: [30, 80],
   ),
   Event(
@@ -288,7 +337,11 @@ List<Event> collections = [
     time: '6:30PM - 9:30PM',
     location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
     prices: [40, 90],
-    organizer: 'Club Kiss',
+    organizer: Organizer(
+      name: 'Club Kiss',
+      genres: ['Concerts', 'Parties'],
+      image: AssetImages.organizerIcon,
+    ),
     discountPrices: [30, 80],
     updates: [
       Update(
@@ -310,7 +363,11 @@ List<Event> collections = [
     time: '6:30PM - 9:30PM',
     location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
     prices: [40, 90],
-    organizer: 'Club Kiss',
+    organizer: Organizer(
+      name: 'Club Kiss',
+      genres: ['Concerts', 'Parties'],
+      image: AssetImages.organizerIcon,
+    ),
     discountPrices: [30, 80],
     updates: [
       Update(

@@ -1,11 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:ticket_app/domain/ext.dart';
-import 'package:ticket_app/domain/providers.dart';
+import 'package:ticket_app/presentation/widgets/organizer_item.dart';
 import '../../domain/models/event.dart';
 import '../resources/asset_images.dart';
 import '../styles/app_colors.dart';
@@ -14,6 +12,8 @@ import '../styles/app_styles.dart';
 class EventDetailsScreen extends StatelessWidget {
   final Event event;
   final ScrollController controller = ScrollController();
+  final PageStorageBucket appBucket = PageStorageBucket();
+
   EventDetailsScreen({
     Key? key,
     required this.event,
@@ -175,7 +175,7 @@ class EventDetailsScreen extends StatelessWidget {
                             ),
                             const SizedBox(width: 12),
                             Text(
-                              event.organizer,
+                              event.organizer.name,
                               style: lightTicketDetailsSubTitle,
                             ),
                           ],
@@ -291,15 +291,8 @@ class EventDetailsScreen extends StatelessWidget {
                                       const SizedBox(height: 16),
                                       if (index == 0 && !ref.updatesReadMore)
                                         TextButton(
-                                          onPressed: () {
-                                            ref.toggleUpdatesReadMore();
-                                            controller.animateTo(
-                                              0.0,
-                                              duration: const Duration(
-                                                  milliseconds: 300),
-                                              curve: Curves.easeOut,
-                                            );
-                                          },
+                                          onPressed: () =>
+                                              ref.toggleUpdatesReadMore(),
                                           child: const Text(
                                             'Show more',
                                             style: TextStyle(
@@ -331,6 +324,94 @@ class EventDetailsScreen extends StatelessWidget {
                                 ),
                               )
                             : const Center(child: Text('No updates yet')),
+                        const SizedBox(height: 40),
+                        Text(
+                          'Location',
+                          style: lightTicketDetailsWhitePartTitle,
+                        ),
+                        const SizedBox(height: 16),
+                        const Image(
+                          image: AssetImage(AssetImages.locationMock),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          event.location[0],
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: AppColors.black.withOpacity(0.75),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          event.location[1],
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: AppColors.black.withOpacity(0.6),
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        Text(
+                          'Organizers',
+                          style: lightTicketDetailsWhitePartTitle,
+                        ),
+                        const SizedBox(height: 24),
+                        OrganizerItem(organizer: event.organizer),
+                        const SizedBox(height: 30),
+                        Container(
+                          color: AppColors.grey,
+                          height: 1,
+                          width: double.infinity,
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  'Є${event.prices[0]} - Є${event.prices[event.prices.length - 1]}',
+                                  style: const TextStyle(
+                                    color: AppColors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  event.title,
+                                  style: const TextStyle(
+                                    color: AppColors.grey,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(AppColors.red),
+                                padding: MaterialStateProperty.all(
+                                    const EdgeInsets.symmetric(horizontal: 32)),
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              child: const Text(
+                                'Buy Tickets',
+                                style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),

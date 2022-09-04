@@ -25,4 +25,7 @@ class AssetImages {
   static const String eventDetails = '${imagesBaseUrl}event_details.png';
   static const String organizer = '${imagesBaseUrl}organizer.png';
   static const String location = '${imagesBaseUrl}location.png';
+  static const String locationMock = '${imagesBaseUrl}location_mock.png';
+  static const String place = '${imagesBaseUrl}place.png';
+  static const String organizerIcon = '${imagesBaseUrl}organizer_icon.png';
 }
