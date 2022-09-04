@@ -4,6 +4,7 @@ import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/presentation/resources/asset_images.dart';
 
 import '../home/home_screen.dart';
+import '../profile/profile_screen.dart';
 import '../search/search_screen.dart';
 import '../styles/app_colors.dart';
 import '../tickets/tickets_screen.dart';
@@ -19,7 +20,12 @@ class MainScreen extends ConsumerWidget {
               title: const Text('Home'),
               centerTitle: true,
             )
-          : null,
+          : ref.bottomBarIndex == 3
+              ? AppBar(
+                  title: const Text('Settings'),
+                  centerTitle: true,
+                )
+              : null,
       body: _tabViews[ref.bottomBarIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: ref.bottomBarIndex,
@@ -59,5 +65,5 @@ List<Widget> _tabViews = [
   const HomeScreen(),
   const SearchScreen(),
   const TicketsScreen(),
-  Container(color: Colors.yellow),
+  const ProfileScreen(),
 ];
