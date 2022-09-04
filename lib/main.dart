@@ -13,7 +13,5 @@ void main() {
       DeviceOrientation.portraitDown,
     ],
   );
-  runApp(DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => const ProviderScope(child: TicketApp())));
+  runApp(const ProviderScope(child: TicketApp()));
 }

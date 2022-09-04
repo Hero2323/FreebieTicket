@@ -183,11 +183,12 @@ List<UpcomingDayList> upcomingDayItemList = [
   UpcomingDayList(
     upcomingList: [
       Event(
+        id: 1,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -195,11 +196,12 @@ List<UpcomingDayList> upcomingDayItemList = [
         discountPrices: [30, 80],
       ),
       Event(
+        id: 2,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -207,11 +209,12 @@ List<UpcomingDayList> upcomingDayItemList = [
         discountPrices: [30, 80],
       ),
       Event(
+        id: 3,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -219,11 +222,12 @@ List<UpcomingDayList> upcomingDayItemList = [
         discountPrices: [30, 80],
       ),
       Event(
+        id: 5,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -237,11 +241,12 @@ List<UpcomingDayList> upcomingDayItemList = [
   UpcomingDayList(
     upcomingList: [
       Event(
+        id: 5,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -249,11 +254,12 @@ List<UpcomingDayList> upcomingDayItemList = [
         discountPrices: [30, 80],
       ),
       Event(
+        id: 5,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -267,11 +273,12 @@ List<UpcomingDayList> upcomingDayItemList = [
   UpcomingDayList(
     upcomingList: [
       Event(
+        id: 5,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -285,11 +292,12 @@ List<UpcomingDayList> upcomingDayItemList = [
   UpcomingDayList(
     upcomingList: [
       Event(
+        id: 5,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -297,11 +305,12 @@ List<UpcomingDayList> upcomingDayItemList = [
         discountPrices: [30, 80],
       ),
       Event(
+        id: 5,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -309,11 +318,12 @@ List<UpcomingDayList> upcomingDayItemList = [
         discountPrices: [30, 80],
       ),
       Event(
+        id: 5,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
         image: AssetImages.upcoming,
-        description: 'Indie Rock',
+        details: 'Indie Rock',
         date: 'Friday, 24 Aug 2019',
         time: '6:30PM - 9:30PM',
         location: ['Daboi Concert Hall', '5/7 Kolejowa, 01-217 Warsaw'],
@@ -328,8 +338,9 @@ List<UpcomingDayList> upcomingDayItemList = [
 
 List<Event> collections = [
   Event(
+    id: 5,
     title: 'Electronica Next Month',
-    description: 'Electronica',
+    details: 'Electronica',
     image: AssetImages.collection,
     genre: 'Electronica',
     date: 'Friday, 24 Aug 2019',
@@ -340,8 +351,9 @@ List<Event> collections = [
     discountPrices: [30, 80],
   ),
   Event(
+    id: 5,
     title: 'Electronica Next Month',
-    description: 'Electronica',
+    details: 'Electronica',
     image: AssetImages.collection,
     genre: 'Electronica',
     date: 'Friday, 24 Aug 2019',
@@ -352,8 +364,9 @@ List<Event> collections = [
     discountPrices: [30, 80],
   ),
   Event(
+    id: 5,
     title: 'Electronica Next Month',
-    description: 'Electronica',
+    details: 'Electronica',
     image: AssetImages.collection,
     genre: 'Electronica',
     date: 'Friday, 24 Aug 2019',
@@ -364,8 +377,9 @@ List<Event> collections = [
     discountPrices: [30, 80],
   ),
   Event(
+    id: 5,
     title: 'Electronica Next Month',
-    description: 'Electronica',
+    details: 'Electronica',
     image: AssetImages.collection,
     genre: 'Electronica',
     date: 'Friday, 24 Aug 2019',

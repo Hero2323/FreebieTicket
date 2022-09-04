@@ -4,7 +4,6 @@ import 'package:ticket_app/presentation/widgets/day_card.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_item.dart';
 
 import '../../domain/constants.dart';
-import '../styles/app_colors.dart';
 import 'dotted_line.dart';
 import 'more_upcoming_item.dart';
 
