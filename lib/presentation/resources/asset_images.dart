@@ -28,5 +28,5 @@ class AssetImages {
   static const String locationMock = '${imagesBaseUrl}location_mock.png';
   static const String place = '${imagesBaseUrl}place.png';
   static const String organizerIcon = '${imagesBaseUrl}organizer_icon.png';
-  static const String bg = '${imagesBaseUrl}bg.png';
+  static const String ticket = '${imagesBaseUrl}ticket.png';
 }
