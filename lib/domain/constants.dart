@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:typed_data';
+import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const double dotRadius = 5;
@@ -12,9 +15,74 @@ const String mapStyle2 =
     '[{"featureType": "administrative.land_parcel","stylers": [{"visibility": "off"}]},{"featureType": "administrative.neighborhood","stylers": [{"visibility": "off"}]},{"featureType": "poi.business","stylers": [{"visibility": "off"}]},{"featureType": "poi.park","elementType": "labels.text","stylers": [{"visibility": "off"}]},{"featureType": "road","elementType": "labels","stylers": [{"visibility": "off"}]},{"featureType": "road.arterial","elementType": "labels","stylers": [{"visibility": "off"}]},{"featureType": "road.highway","elementType": "labels","stylers": [{"visibility": "off"}]},{"featureType": "road.local","stylers": [{"visibility": "off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#bbdefb"}]}]}]';
 
 final Completer<GoogleMapController> controller = Completer();
-final Map<String, Marker> markers = {};
+
+BitmapDescriptor? _createMarkerImageFromAsset(String iconPath) {
+  ImageConfiguration configuration = const ImageConfiguration();
+  BitmapDescriptor.fromAssetImage(configuration, iconPath).then((value) {
+    return value;
+  });
+  return null;
+}
+
+//BitmapDescriptor.fromAssetImage(
+//       ImageConfiguration(devicePixelRatio: 3.2),
+//       "assets/images/markeruser.png",),
+
+Future<BitmapDescriptor> _getAssetIcon(BuildContext context) async {
+  final Completer<BitmapDescriptor> bitmapIcon = Completer<BitmapDescriptor>();
+  final ImageConfiguration config = createLocalImageConfiguration(context);
+
+  const AssetImage('assets/images/ticket.png')
+      .resolve(config)
+      .addListener(ImageStreamListener((ImageInfo image, bool sync) async {
+    final ByteData? bytes =
+        await image.image.toByteData(format: ImageByteFormat.png);
+    if (bytes == null) {
+      bitmapIcon.completeError(Exception('Unable to encode icon'));
+      return;
+    }
+    final BitmapDescriptor bitmap =
+        BitmapDescriptor.fromBytes(bytes.buffer.asUint8List());
+    bitmapIcon.complete(bitmap);
+  }));
+
+  return await bitmapIcon.future;
+}
+
+// final Map<String, Marker> markers = {
+//   '1': Marker(
+//     markerId: const MarkerId('1'),
+//     position: const LatLng(30.04443664782354, 31.235684551378952),
+//     infoWindow: const InfoWindow(title: 'Hello marker 1', snippet: '*'),
+//     icon: BitmapDescriptor.defaultMarkerWithHue(
+//       BitmapDescriptor.hueGreen,
+//     ),
+//     // _createMarkerImageFromAsset("assets/images/ticket.png")!,
+//     onTap: () {
+//       // _onMarkerTapped(markerId);
+//     },
+//   ),
+// };
+
+
+
 const CameraPosition initialLocation = CameraPosition(
   target: LatLng(30.04443664782354, 31.235684551378952),
-  zoom: 16,
+  zoom: 18,
 );
 
+void _add() {
+  final Marker marker = Marker(
+    markerId: const MarkerId('1'),
+    position: const LatLng(30.04443664782354, 31.235684551378952),
+    infoWindow: const InfoWindow(title: 'Hello marker 1', snippet: '*'),
+    onTap: () {
+      // _onMarkerTapped(markerId);
+    },
+  );
+
+  // setState(() {
+  // // adding a new marker to map
+  // markers[markerId] = marker;
+  // });
+}
