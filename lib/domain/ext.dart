@@ -62,3 +62,16 @@ extension SelectedPlacesIndex on WidgetRef {
       read(selectedPlacesIndexProvider.notifier).state =
           !read(selectedPlacesIndexProvider);
 }
+
+extension MyTicketsFilter on WidgetRef {
+  bool isSelectedMyTickets(int index) =>
+      watch(myTicketsFilterProvider) == index;
+
+  void setSelectedMyTicketsFilter(int index) {
+    if (index == read(myTicketsFilterProvider)) {
+      read(myTicketsFilterProvider.notifier).state = -1;
+    } else {
+      read(myTicketsFilterProvider.notifier).state = index;
+    }
+  }
+}

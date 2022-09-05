@@ -18,3 +18,5 @@ final eventDetailsUpdatesReadMoreProvider =
 final selectedEventsIndexProvider = StateProvider((ref) => false);
 
 final selectedPlacesIndexProvider = StateProvider((ref) => false);
+
+final myTicketsFilterProvider = StateProvider((ref) => -1);

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/presentation/styles/app_styles.dart';
+import 'package:ticket_app/presentation/widgets/popular_searched_list.dart';
+import 'package:ticket_app/presentation/widgets/ticket_item.dart';
 import '../resources/asset_images.dart';
 import '../styles/app_colors.dart';
+import '../widgets/filter_item.dart';
+import 'tickets_mock.dart';
 
 class TicketsScreen extends StatelessWidget {
   const TicketsScreen({Key? key}) : super(key: key);
@@ -9,27 +15,75 @@ class TicketsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return true
-        ? Stack(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(AssetImages.noTickets),
-                          fit: BoxFit.fill,
+        ? SafeArea(
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (overscroll) {
+                overscroll.disallowIndicator();
+                return true;
+              },
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Material(
+                  color: AppColors.white,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'My Tickets',
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
+                      const SizedBox(height: 16),
+                      Consumer(
+                        builder: (context, ref, child) => SizedBox(
+                          height: 60,
+                          child: NotificationListener<
+                              OverscrollIndicatorNotification>(
+                            onNotification: (overscroll) {
+                              overscroll.disallowIndicator();
+                              return true;
+                            },
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: FilterItem(
+                                  filter: filters[index],
+                                  selected: ref.isSelectedMyTickets(index),
+                                  onTap: () =>
+                                      ref.setSelectedMyTicketsFilter(index),
+                                ),
+                              ),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(width: 8),
+                              itemCount: filters.length,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: events.length,
+                        itemBuilder: (context, index) {
+                          return TicketItem(
+                            event: events[index],
+                          );
+                        },
+                        separatorBuilder: (context, index) => const SizedBox(
+                          height: 16,
+                        ),
+                      ),
+                    ],
                   ),
-                  const Expanded(flex: 1, child: SizedBox()),
-                ],
+                ),
               ),
-            ],
+            ),
           )
         : Column(
             mainAxisAlignment: MainAxisAlignment.start,

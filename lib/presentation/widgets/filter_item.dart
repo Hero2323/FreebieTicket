@@ -24,7 +24,7 @@ class FilterItem extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(30)),
           boxShadow: [
             BoxShadow(
-              color: AppColors.grey.withOpacity(0.2),
+              color: AppColors.grey.withOpacity(0.8),
               spreadRadius: 0.5, //extend the shadow
             ),
           ],
