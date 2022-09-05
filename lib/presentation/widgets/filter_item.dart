@@ -20,7 +20,7 @@ class FilterItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: selected ? AppColors.black.withOpacity(0.2) : AppColors.white,
+          color: selected ? AppColors.grey.withOpacity(0.3) : AppColors.white,
           borderRadius: const BorderRadius.all(Radius.circular(30)),
           boxShadow: [
             BoxShadow(

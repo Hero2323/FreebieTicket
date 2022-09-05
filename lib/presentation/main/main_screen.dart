@@ -15,6 +15,7 @@ class MainScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: ref.bottomBarIndex == 0
           ? AppBar(
               title: const Text('Home'),

@@ -18,7 +18,7 @@ class TicketItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: AppColors.white,
-      elevation: 5,
+      elevation: 2,
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: InkWell(
         borderRadius: const BorderRadius.all(

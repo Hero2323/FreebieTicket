@@ -16,71 +16,68 @@ class TicketsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return true
         ? SafeArea(
-            child: Material(
-              color: AppColors.white,
-              child: NotificationListener<OverscrollIndicatorNotification>(
-                onNotification: (overscroll) {
-                  overscroll.disallowIndicator();
-                  return true;
-                },
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'My Tickets',
-                        style: TextStyle(
-                          color: AppColors.black,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (overscroll) {
+                overscroll.disallowIndicator();
+                return true;
+              },
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'My Tickets',
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const SizedBox(height: 16),
-                      Consumer(
-                        builder: (context, ref, child) => SizedBox(
-                          height: 60,
-                          child: NotificationListener<
-                              OverscrollIndicatorNotification>(
-                            onNotification: (overscroll) {
-                              overscroll.disallowIndicator();
-                              return true;
-                            },
-                            child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: FilterItem(
-                                  filter: filters[index],
-                                  selected: ref.isSelectedMyTickets(index),
-                                  onTap: () =>
-                                      ref.setSelectedMyTicketsFilter(index),
-                                ),
+                    ),
+                    const SizedBox(height: 16),
+                    Consumer(
+                      builder: (context, ref, child) => SizedBox(
+                        height: 60,
+                        child: NotificationListener<
+                            OverscrollIndicatorNotification>(
+                          onNotification: (overscroll) {
+                            overscroll.disallowIndicator();
+                            return true;
+                          },
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: FilterItem(
+                                filter: filters[index],
+                                selected: ref.isSelectedMyTickets(index),
+                                onTap: () =>
+                                    ref.setSelectedMyTicketsFilter(index),
                               ),
-                              separatorBuilder: (context, index) =>
-                                  const SizedBox(width: 8),
-                              itemCount: filters.length,
                             ),
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(width: 8),
+                            itemCount: filters.length,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16),
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: events.length,
-                        itemBuilder: (context, index) {
-                          return TicketItem(
-                            event: events[index],
-                          );
-                        },
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 16,
-                        ),
+                    ),
+                    const SizedBox(height: 16),
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: events.length,
+                      itemBuilder: (context, index) {
+                        return TicketItem(
+                          event: events[index],
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 16,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -185,3 +182,8 @@ List<String> popular = [
   'TV on the Radio',
   'FC Barcelona',
 ];
+
+// TODO: Loctation in event details
+// TODO: Change Theme
+// TODO: Localization
+// TODO: Settings screen
