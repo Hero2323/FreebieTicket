@@ -5,7 +5,7 @@ ThemeData getApplicationLightTheme() {
   return ThemeData(
     appBarTheme: const AppBarTheme(
       color: AppColors.white,
-      elevation: 5,
+      elevation: 2,
       titleTextStyle: TextStyle(
         color: AppColors.black,
         fontSize: 18,
