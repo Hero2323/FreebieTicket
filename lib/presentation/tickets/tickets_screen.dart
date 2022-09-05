@@ -16,15 +16,15 @@ class TicketsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return true
         ? SafeArea(
-            child: NotificationListener<OverscrollIndicatorNotification>(
-              onNotification: (overscroll) {
-                overscroll.disallowIndicator();
-                return true;
-              },
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
-                child: Material(
-                  color: AppColors.white,
+            child: Material(
+              color: AppColors.white,
+              child: NotificationListener<OverscrollIndicatorNotification>(
+                onNotification: (overscroll) {
+                  overscroll.disallowIndicator();
+                  return true;
+                },
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
