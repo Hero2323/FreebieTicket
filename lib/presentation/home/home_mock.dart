@@ -159,6 +159,7 @@ List<UpcomingEvents> upcomingEvents = [
           image: AssetImages.organizerIcon,
         ),
         discountPrices: [30, 80],
+        updates: [],
       ),
       Event(
         id: 6,
@@ -176,6 +177,7 @@ List<UpcomingEvents> upcomingEvents = [
           image: AssetImages.organizerIcon,
         ),
         discountPrices: [30, 80],
+        updates: [],
       ),
     ],
     date: DateTime(2022, 7, 15),
@@ -200,6 +202,7 @@ List<UpcomingEvents> upcomingEvents = [
           image: AssetImages.organizerIcon,
         ),
         discountPrices: [30, 80],
+        updates: [],
       ),
     ],
     date: DateTime(2022, 8, 12),
@@ -224,6 +227,7 @@ List<UpcomingEvents> upcomingEvents = [
           image: AssetImages.organizerIcon,
         ),
         discountPrices: [30, 80],
+        updates: [],
       ),
       Event(
         id: 9,
@@ -241,6 +245,7 @@ List<UpcomingEvents> upcomingEvents = [
           image: AssetImages.organizerIcon,
         ),
         discountPrices: [30, 80],
+        updates: [],
       ),
       Event(
         id: 10,
@@ -258,6 +263,7 @@ List<UpcomingEvents> upcomingEvents = [
           image: AssetImages.organizerIcon,
         ),
         discountPrices: [30, 80],
+        updates: [],
       ),
     ],
     date: DateTime(2022, 2, 1),
@@ -326,6 +332,7 @@ List<Event> collections = [
       image: AssetImages.organizerIcon,
     ),
     discountPrices: [30, 80],
+    updates: [],
   ),
   Event(
     id: 13,

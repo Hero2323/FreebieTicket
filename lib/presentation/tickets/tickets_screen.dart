@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/presentation/styles/app_styles.dart';
-import 'package:ticket_app/presentation/widgets/popular_searched_list.dart';
 import 'package:ticket_app/presentation/widgets/ticket_item.dart';
 import '../resources/asset_images.dart';
 import '../styles/app_colors.dart';

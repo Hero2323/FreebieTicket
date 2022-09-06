@@ -12,7 +12,7 @@ class Event {
   final List<String> location;
   final List<int> prices;
   final List<int> discountPrices;
-  final List<Update>? updates;
+  final List<Update> updates;
   final Organizer organizer;
 
   Event({
@@ -27,6 +27,6 @@ class Event {
     required this.prices,
     required this.organizer,
     required this.discountPrices,
-    this.updates,
+    required this.updates,
   });
 }

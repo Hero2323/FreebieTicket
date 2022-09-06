@@ -29,16 +29,20 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: AppColors.transparent,
+      statusBarBrightness: Brightness.dark,
+    ));
     super.initState();
   }
 
   @override
   void dispose() {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: AppColors.white,
+      statusBarBrightness: Brightness.light,
+    ));
     super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
   }
 
   @override
@@ -282,7 +286,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                               ],
                             ),
                             const SizedBox(height: 8),
-                            widget.event.updates != null
+                            widget.event.updates.isNotEmpty
                                 ? Consumer(
                                     builder: (context, ref, child) =>
                                         ListView.separated(

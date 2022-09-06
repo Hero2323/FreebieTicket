@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
+import 'package:ticket_app/presentation/widgets/for_you_item.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_events_item.dart';
 
 import '../resources/asset_images.dart';
@@ -43,27 +44,19 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 79),
-            Center(
-              child: InkWell(
-                onTap: () {},
-                child: Column(
-                  children: [
-                    const Image(
-                      image: AssetImage(AssetImages.filters),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'Tap to set filters.',
-                      style: TextStyle(
-                        color: AppColors.grey.withOpacity(0.5),
-                      ),
-                    )
-                  ],
-                ),
+            const SizedBox(height: 24),
+            SizedBox(
+              height: 280,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemBuilder: (context, index) =>
+                    ForYouItem(event: collections[index]),
+                separatorBuilder: (context, index) => const SizedBox(width: 16),
+                itemCount: collections.length,
               ),
             ),
-            const SizedBox(height: 111),
+            const SizedBox(height: 56),
             Text(
               'Collections',
               style: Theme.of(context).textTheme.bodyLarge,

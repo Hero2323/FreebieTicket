@@ -73,6 +73,7 @@ List<Event> fakeEventsList = [
       image: AssetImages.organizerIcon,
     ),
     discountPrices: [30, 80],
+    updates: [],
   ),
   Event(
     id: 13,
