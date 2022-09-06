@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/presentation/router/router_names.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 import 'package:ticket_app/presentation/styles/app_styles.dart';
 import '../../domain/models/event.dart';
@@ -17,8 +18,8 @@ class UpcomingItem extends StatelessWidget {
     return Container(
       height: 170,
       decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage(AssetImages.collection),
+        image: DecorationImage(
+          image: NetworkImage(upcoming.image),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(25),
@@ -27,7 +28,8 @@ class UpcomingItem extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(25),
-          onTap: () {},
+          onTap: () => Navigator.of(context)
+              .pushNamed(RouterNames.eventDetailsRoute, arguments: upcoming),
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(

@@ -19,7 +19,7 @@ class OrganizerItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleAvatar(
-          backgroundImage: AssetImage(organizer.image),
+          backgroundImage: NetworkImage(organizer.image),
           radius: 25,
           backgroundColor: AppColors.white,
         ),

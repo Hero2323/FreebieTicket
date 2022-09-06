@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ticket_app/presentation/router/router_names.dart';
 
 import '../../domain/models/event.dart';
 import '../resources/asset_images.dart';
@@ -19,8 +20,8 @@ class ForYouItem extends StatelessWidget {
       height: 250,
       width: MediaQuery.of(context).size.width * 0.85,
       decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage(AssetImages.forYou),
+        image: DecorationImage(
+          image: NetworkImage(event.image),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(25),
@@ -29,7 +30,8 @@ class ForYouItem extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(25),
-          onTap: () {},
+          onTap: () => Navigator.of(context)
+              .pushNamed(RouterNames.eventDetailsRoute, arguments: event),
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(

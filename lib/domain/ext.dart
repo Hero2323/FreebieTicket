@@ -88,3 +88,10 @@ extension MoreUpcomingEvents on WidgetRef {
         showMoreUpcomingEvents;
   }
 }
+
+extension EventsLoaded on WidgetRef {
+  bool get eventsLoaded => watch(eventsLoadedProvider);
+
+  void setEventsLoaded(bool value) =>
+      read(eventsLoadedProvider.notifier).state = value;
+}

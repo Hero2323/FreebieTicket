@@ -24,3 +24,11 @@ final selectedPlacesIndexProvider = StateProvider((ref) => false);
 final myTicketsFilterProvider = StateProvider((ref) => -1);
 
 final showMoreUpcomingEventsProvider = StateProvider<List<bool>>((ref) => []);
+
+final forYouProvider = StateProvider((ref) => false);
+
+final eventsLoadedProvider = StateProvider(
+  (ref) =>
+      ref.watch(showMoreUpcomingEventsProvider).isNotEmpty &&
+      ref.watch(forYouProvider),
+);

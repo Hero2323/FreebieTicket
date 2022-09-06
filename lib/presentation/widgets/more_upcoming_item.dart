@@ -31,7 +31,7 @@ class MoreUpcomingItem extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(15),
-            onTap: () => ref.toggleShowMoreUpcomingEvents(upcomingId - 1),
+            onTap: () => ref.toggleShowMoreUpcomingEvents(upcomingId),
             child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Center(
@@ -39,13 +39,13 @@ class MoreUpcomingItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        ref.showMoreUpcomingEvents[upcomingId - 1]
+                        ref.showMoreUpcomingEvents[upcomingId]
                             ? 'Show Less'.toUpperCase()
                             : '${events.length} more events'.toUpperCase(),
                         style: lightCollectionTitle,
                       ),
                       Icon(
-                        ref.showMoreUpcomingEvents[upcomingId - 1]
+                        ref.showMoreUpcomingEvents[upcomingId]
                             ? Icons.keyboard_arrow_up
                             : Icons.keyboard_arrow_down_sharp,
                         color: Colors.white,

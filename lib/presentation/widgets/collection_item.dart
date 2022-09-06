@@ -19,8 +19,8 @@ class CollectionItem extends StatelessWidget {
           ? 320
           : MediaQuery.of(context).size.width * 0.8,
       decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage(AssetImages.collection),
+        image: DecorationImage(
+          image: NetworkImage(collection.image),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(25),

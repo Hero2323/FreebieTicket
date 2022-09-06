@@ -36,21 +36,21 @@ List<Event> fakeEventsList = [
     updates: [
       Update(
         id: 1,
-        date: DateTime(2019, 8, 14),
+        date: '2019, 8, 23',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
       ),
       Update(
         id: 1,
-        date: DateTime(2019, 8, 21),
+        date: '2019, 8, 23',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
       ),
       Update(
         id: 1,
-        date: DateTime(2019, 8, 23),
+        date: '2019, 8, 23',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
@@ -94,7 +94,7 @@ List<Event> fakeEventsList = [
     updates: [
       Update(
         id: 1,
-        date: DateTime(2019, 8, 14),
+        date: '2019, 8, 23',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
@@ -120,14 +120,14 @@ List<Event> fakeEventsList = [
     updates: [
       Update(
         id: 1,
-        date: DateTime(2019, 8, 14),
+        date: '2019, 8, 23',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
       ),
       Update(
         id: 1,
-        date: DateTime(2019, 8, 14),
+        date: '2019, 8, 23',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',

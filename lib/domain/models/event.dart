@@ -29,4 +29,27 @@ class Event {
     required this.discountPrices,
     required this.updates,
   });
+
+  Event.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        title = json['title'],
+        details = json['details'],
+        image = json['image'],
+        genre = json['genre'],
+        date = json['date'],
+        time = json['time'],
+        location = (json['location'] as List<dynamic>)
+            .map((e) => e.toString())
+            .toList(),
+        organizer = Organizer.fromJson(json['organizer']),
+        prices = (json['prices'] as List<dynamic>)
+            .map((e) => int.parse(e.toString()))
+            .toList(),
+        discountPrices = (json['discountPrices'] as List<dynamic>)
+            .map((e) => int.parse(e.toString()))
+            .toList(),
+        updates = (json['updates'] as List<dynamic>?)!
+            .map((updateMap) =>
+                Update.fromJson(updateMap as Map<String, dynamic>))
+            .toList();
 }

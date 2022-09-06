@@ -1,6 +1,6 @@
 class Update {
   final int id;
-  final DateTime date;
+  final String date;
   final String contents;
 
   Update({
@@ -8,4 +8,9 @@ class Update {
     required this.date,
     required this.contents,
   });
+
+  Update.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        date = json['date'],
+        contents = json['contents'];
 }

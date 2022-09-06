@@ -9,7 +9,6 @@ import '../styles/app_colors.dart';
 
 List<UpcomingEvents> upcomingEvents = [
   UpcomingEvents(
-    id: 1,
     events: [
       Event(
         id: 1,
@@ -30,7 +29,7 @@ List<UpcomingEvents> upcomingEvents = [
         updates: [
           Update(
             id: 1,
-            date: DateTime(2019, 8, 14),
+            date: '2019, 8, 14',
             contents: 'Customers that are searching for a particular topic. '
                 'What\'s great about them is that you only have to lookup one '
                 'topic and you\'ll get a list of all the related topics.',
@@ -56,14 +55,14 @@ List<UpcomingEvents> upcomingEvents = [
         updates: [
           Update(
             id: 1,
-            date: DateTime(2019, 8, 14),
+            date: '2019, 8, 14',
             contents: 'Customers that are searching for a particular topic. '
                 'What\'s great about them is that you only have to lookup one '
                 'topic and you\'ll get a list of all the related topics.',
           ),
           Update(
             id: 1,
-            date: DateTime(2019, 8, 21),
+            date: '2019, 8, 21',
             contents: 'Customers that are searching for a particular topic. '
                 'What\'s great about them is that you only have to lookup one '
                 'topic and you\'ll get a list of all the related topics.',
@@ -89,7 +88,7 @@ List<UpcomingEvents> upcomingEvents = [
         updates: [
           Update(
             id: 1,
-            date: DateTime(2019, 8, 14),
+            date: '2019, 8, 14',
             contents: 'Customers that are searching for a particular topic. '
                 'What\'s great about them is that you only have to lookup one '
                 'topic and you\'ll get a list of all the related topics.',
@@ -97,7 +96,7 @@ List<UpcomingEvents> upcomingEvents = [
         ],
       ),
       Event(
-        id: 4,
+        id: 1,
         title: 'Brightlight Music Festival',
         genre: 'Indie Rock',
         prices: [40, 60, 90],
@@ -115,21 +114,21 @@ List<UpcomingEvents> upcomingEvents = [
         updates: [
           Update(
             id: 1,
-            date: DateTime(2019, 8, 14),
+            date: '2019, 8, 14',
             contents: 'Customers that are searching for a particular topic. '
                 'What\'s great about them is that you only have to lookup one '
                 'topic and you\'ll get a list of all the related topics.',
           ),
           Update(
             id: 1,
-            date: DateTime(2019, 8, 21),
+            date: '2019, 8, 21',
             contents: 'Customers that are searching for a particular topic. '
                 'What\'s great about them is that you only have to lookup one '
                 'topic and you\'ll get a list of all the related topics.',
           ),
           Update(
             id: 1,
-            date: DateTime(2019, 8, 23),
+            date: '2019, 8, 23',
             contents: 'Customers that are searching for a particular topic. '
                 'What\'s great about them is that you only have to lookup one '
                 'topic and you\'ll get a list of all the related topics.',
@@ -137,11 +136,10 @@ List<UpcomingEvents> upcomingEvents = [
         ],
       ),
     ],
-    date: DateTime.now(),
-    moreEventsImage: AssetImages.moreUpcoming,
+    date: '2019, 8, 21',
+    noOfEvents: 5,
   ),
   UpcomingEvents(
-    id: 2,
     events: [
       Event(
         id: 5,
@@ -180,11 +178,10 @@ List<UpcomingEvents> upcomingEvents = [
         updates: [],
       ),
     ],
-    date: DateTime(2022, 7, 15),
-    moreEventsImage: AssetImages.moreUpcoming,
+    date: '2022, 7, 15',
+    noOfEvents: 2,
   ),
   UpcomingEvents(
-    id: 3,
     events: [
       Event(
         id: 7,
@@ -205,11 +202,10 @@ List<UpcomingEvents> upcomingEvents = [
         updates: [],
       ),
     ],
-    date: DateTime(2022, 8, 12),
-    moreEventsImage: AssetImages.moreUpcoming,
+    date: '2022, 8, 12',
+    noOfEvents: 5,
   ),
   UpcomingEvents(
-    id: 4,
     events: [
       Event(
         id: 8,
@@ -266,8 +262,8 @@ List<UpcomingEvents> upcomingEvents = [
         updates: [],
       ),
     ],
-    date: DateTime(2022, 2, 1),
-    moreEventsImage: AssetImages.moreUpcoming,
+    date: '2022, 2, 1',
+    noOfEvents: 5,
   ),
 ];
 
@@ -295,21 +291,21 @@ List<Event> collections = [
     updates: [
       Update(
         id: 1,
-        date: DateTime(2019, 8, 14),
+        date: '2019, 8, 14',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
       ),
       Update(
         id: 1,
-        date: DateTime(2019, 8, 21),
+        date: '2019, 8, 21',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
       ),
       Update(
         id: 1,
-        date: DateTime(2019, 8, 23),
+        date: '2019, 8, 23',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
@@ -353,7 +349,7 @@ List<Event> collections = [
     updates: [
       Update(
         id: 1,
-        date: DateTime(2019, 8, 14),
+        date: '2019, 8, 14',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
@@ -379,14 +375,14 @@ List<Event> collections = [
     updates: [
       Update(
         id: 1,
-        date: DateTime(2019, 8, 14),
+        date: '2019, 8, 14',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
       ),
       Update(
         id: 1,
-        date: DateTime(2019, 8, 14),
+        date: '2019, 8, 14',
         contents: 'Customers that are searching for a particular topic. '
             'What\'s great about them is that you only have to lookup one '
             'topic and you\'ll get a list of all the related topics.',
