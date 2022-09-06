@@ -29,11 +29,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void _setMarkerIcon(String markerID, BitmapDescriptor assetIcon) {
     final Marker marker = markers[markerID]!;
-    setState(() {
-      markers[markerID] = marker.copyWith(
-        iconParam: assetIcon,
-      );
-    });
+    if (mounted) {
+      setState(() {
+        markers[markerID] = marker.copyWith(
+          iconParam: assetIcon,
+        );
+      });
+    }
   }
 
   Future<BitmapDescriptor> _getAssetIcon(BuildContext context, icon) async {
