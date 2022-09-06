@@ -1,5 +1,9 @@
-class GetEventsRequest {
+class EventsRequest {
   final String language;
 
-  GetEventsRequest(this.language);
+  EventsRequest(this.language);
+
+  Map<String, dynamic> toJson() => {'language': language};
+
 }
+

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ticket_app/domain/ext.dart';
+import 'package:ticket_app/presentation/home/home_viewmodel.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_events_item.dart';
 
@@ -11,8 +12,21 @@ import '../widgets/collection_item.dart';
 import '../widgets/filter_item.dart';
 import 'home_mock.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final HomeViewModel _homeViewModel = HomeViewModel();
+
+  @override
+  void initState() {
+    _homeViewModel.init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,12 +185,11 @@ class HomeScreen extends StatelessWidget {
               mainAxisSpacing: 15,
               crossAxisSpacing: 15,
               children: List.generate(
-                upcomingEvents.length,
+                _homeViewModel.upcomingEvents.length,
                 (index) {
                   upcomingEvents.sort((a, b) => a.date.compareTo(b.date));
                   return UpcomingEventsItem(
-                    date: upcomingEvents[index].date,
-                    upcomingEvents: upcomingEvents[index],
+                    upcomingEvents: _homeViewModel.upcomingEvents[index],
                   );
                 },
               ),

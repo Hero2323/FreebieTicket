@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 
 class DayCard extends StatelessWidget {
-  final DateTime date;
+  final String date;
+
   const DayCard({
     Key? key,
     required this.date,
@@ -27,7 +27,7 @@ class DayCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            getMonth(date.month).toUpperCase(),
+            date.split(' ')[2].toUpperCase(),
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -36,7 +36,7 @@ class DayCard extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            '${date.day}',
+            date.split(' ')[1],
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -45,7 +45,7 @@ class DayCard extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            DateFormat('EEEE').format(date).substring(0, 3).toUpperCase(),
+            date.substring(0, 3).toUpperCase(),
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,

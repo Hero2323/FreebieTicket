@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:elbahreen/constants/end_points.dart';
+
+import '../network/end_points.dart';
 
 class DioHelper {
   static Dio? dio;
@@ -7,7 +8,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: baseURL,
+        baseUrl: baseUrl,
         receiveDataWhenStatusError: true,
       ),
     );
@@ -15,7 +16,6 @@ class DioHelper {
 
   static Future<Response> getData(
       {required String url, required Map<String, dynamic> query}) async {
-    print('getData: $url');
     return await dio!.get(url, queryParameters: query);
   }
 

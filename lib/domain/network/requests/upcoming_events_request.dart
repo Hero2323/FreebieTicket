@@ -1,6 +1,11 @@
-class GetUpcomingEventsRequest {
+class UpcomingEventsRequest {
   final String date;
   final String language;
 
-  GetUpcomingEventsRequest(this.date, this.language);
+  UpcomingEventsRequest(this.date, this.language);
+
+  Map<String, dynamic> toJson() => {
+        'date': date,
+        'language': language,
+      };
 }

@@ -1,15 +1,20 @@
 import 'event.dart';
 
 class UpcomingEvents {
-  final int id;
+  final int noOfEvents;
+  final String date;
   final List<Event> events;
-  final DateTime date;
-  final String? moreEventsImage;
 
   UpcomingEvents({
-    required this.id,
+    required this.noOfEvents,
     required this.events,
     required this.date,
-    this.moreEventsImage,
   });
+
+  UpcomingEvents.fromJson(Map<String, dynamic> json)
+      : noOfEvents = json['noOfEvents'],
+        date = json['date'],
+        events = (json['events'] as List<dynamic>?)!
+            .map((eventMap) => Event.fromJson(eventMap as Map<String, dynamic>))
+            .toList();
 }

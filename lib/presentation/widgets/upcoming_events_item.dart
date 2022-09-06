@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/domain/models/upcoming_events.dart';
+import 'package:ticket_app/presentation/resources/asset_images.dart';
 import 'package:ticket_app/presentation/widgets/day_card.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_item.dart';
 
@@ -8,11 +9,10 @@ import 'dotted_line.dart';
 import 'more_upcoming_item.dart';
 
 class UpcomingEventsItem extends StatelessWidget {
-  final DateTime date;
   final UpcomingEvents upcomingEvents;
+
   const UpcomingEventsItem({
     Key? key,
-    required this.date,
     required this.upcomingEvents,
   }) : super(key: key);
 
@@ -27,7 +27,7 @@ class UpcomingEventsItem extends StatelessWidget {
           children: [
             Column(
               children: [
-                DayCard(date: date),
+                DayCard(date: upcomingEvents.date),
                 const SizedBox(height: 8),
                 DottedLine(
                   height: upcomingEvents.events.length > 1
@@ -49,7 +49,7 @@ class UpcomingEventsItem extends StatelessWidget {
                             const SizedBox(height: 16),
                             MoreUpcomingItem(
                               number: upcomingEvents.events.length - 1,
-                              image: upcomingEvents.moreEventsImage!,
+                              image: AssetImages.moreUpcoming,
                             )
                           ],
                         )
