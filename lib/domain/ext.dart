@@ -75,3 +75,16 @@ extension MyTicketsFilter on WidgetRef {
     }
   }
 }
+
+extension MoreUpcomingEvents on WidgetRef {
+  List<bool> get showMoreUpcomingEvents =>
+      watch(showMoreUpcomingEventsProvider);
+
+  void toggleShowMoreUpcomingEvents(int index) {
+    final List<bool> showMoreUpcomingEvents =
+        List.from(read(showMoreUpcomingEventsProvider));
+    showMoreUpcomingEvents[index] = !showMoreUpcomingEvents[index];
+    read(showMoreUpcomingEventsProvider.notifier).state =
+        showMoreUpcomingEvents;
+  }
+}

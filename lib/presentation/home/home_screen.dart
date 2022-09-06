@@ -7,13 +7,36 @@ import 'package:ticket_app/presentation/styles/app_colors.dart';
 import 'package:ticket_app/presentation/widgets/for_you_item.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_events_item.dart';
 
+import '../../domain/models/upcoming_events.dart';
+import '../../domain/providers.dart';
 import '../resources/asset_images.dart';
 import '../widgets/collection_item.dart';
 import '../widgets/filter_item.dart';
 import 'home_mock.dart';
 
-class HomeScreen extends StatelessWidget {
+Future<List<UpcomingEvents>> getUpcomingEvents() async {
+  await Future.delayed(const Duration(seconds: 1));
+  return upcomingEvents;
+}
+
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  List<UpcomingEvents>? futureUpcomingEvents;
+  @override
+  void initState() {
+    getUpcomingEvents().then((value) {
+      futureUpcomingEvents = value;
+      ref.read(showMoreUpcomingEventsProvider.notifier).state =
+          futureUpcomingEvents!.map((e) => false).toList();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,22 +181,27 @@ class HomeScreen extends StatelessWidget {
             //   separatorBuilder: (context, index) => const SizedBox(height: 10),
             //   itemCount: upcomingDayItemList.length,
             // )
-            StaggeredGrid.count(
-              crossAxisCount: MediaQuery.of(context).size.width ~/ 340,
-              axisDirection: AxisDirection.down,
-              mainAxisSpacing: 15,
-              crossAxisSpacing: 15,
-              children: List.generate(
-                upcomingEvents.length,
-                (index) {
-                  upcomingEvents.sort((a, b) => a.date.compareTo(b.date));
-                  return UpcomingEventsItem(
-                    date: upcomingEvents[index].date,
-                    upcomingEvents: upcomingEvents[index],
-                  );
-                },
-              ),
-            ),
+            ref.showMoreUpcomingEvents.isNotEmpty
+                ? StaggeredGrid.count(
+                    crossAxisCount: MediaQuery.of(context).size.width ~/ 340,
+                    axisDirection: AxisDirection.down,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15,
+                    children: List.generate(
+                      futureUpcomingEvents!.length,
+                      (index) {
+                        futureUpcomingEvents!
+                            .sort((a, b) => a.date.compareTo(b.date));
+                        return UpcomingEventsItem(
+                          date: futureUpcomingEvents![index].date,
+                          upcomingEvents: futureUpcomingEvents![index],
+                        );
+                      },
+                    ),
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  ),
           ],
         ),
       ),
