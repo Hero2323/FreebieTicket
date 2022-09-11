@@ -181,8 +181,19 @@ List<String> popular = [
   'TV on the Radio',
   'FC Barcelona',
 ];
-
-// TODO: Loctation in event details
 // TODO: Change Theme
 // TODO: Localization
+
+
 // TODO: Settings screen
+// TODO: Add Filtration in home screen for upcoming events
+// TODO: Fix the status bar in event details
+// TODO: Add an Icon to the app & change the app name
+// TODO: Add contact us & about us screens
+// TODO: Make a good readme
+
+
+// ! FIX THE GOOGLE MAPS CRASH ISSUE
+// TODO: Locatation in event details
+// TODO: Implement a payment method (Stripe)
+//TODO: Add (Add Card Screen) and (Add Address Screen)
