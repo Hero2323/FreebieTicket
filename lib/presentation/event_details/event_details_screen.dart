@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:ticket_app/domain/ext.dart';
+import 'package:ticket_app/presentation/router/router_names.dart';
 import 'package:ticket_app/presentation/widgets/organizer_item.dart';
 import '../../domain/models/event.dart';
 import '../resources/asset_images.dart';
@@ -13,7 +13,7 @@ import '../styles/app_styles.dart';
 class EventDetailsScreen extends StatefulWidget {
   final Event event;
 
-  EventDetailsScreen({
+  const EventDetailsScreen({
     Key? key,
     required this.event,
   }) : super(key: key);
@@ -300,7 +300,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          widget.event.updates![index].date,
+                                          widget.event.updates[index].date,
                                           style: TextStyle(
                                             color: AppColors.black
                                                 .withOpacity(0.5),
@@ -310,7 +310,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                         ),
                                         const SizedBox(height: 5),
                                         Text(
-                                          widget.event.updates![index].contents,
+                                          widget.event.updates[index].contents,
                                           style: const TextStyle(
                                             fontSize: 15,
                                             color: AppColors.grey,
@@ -355,7 +355,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                     separatorBuilder: (context, index) =>
                                         const SizedBox(height: 10),
                                     itemCount: ref.updatesReadMore
-                                        ? widget.event.updates!.length
+                                        ? widget.event.updates.length
                                         : 1,
                                   ),
                                 )
@@ -443,7 +443,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                 ],
                               ),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, RouterNames.paymentRoute);
+                                },
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all(AppColors.red),

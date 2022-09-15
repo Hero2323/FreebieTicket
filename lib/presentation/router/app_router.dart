@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/presentation/new_card/new_card_screen.dart';
+import 'package:ticket_app/presentation/payment/payment_screen.dart';
 
 import '../../domain/models/event.dart';
 import '../event_details/event_details_screen.dart';
@@ -13,10 +15,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const MainScreen());
       case RouterNames.eventDetailsRoute:
         return MaterialPageRoute(
-          builder: (_) => EventDetailsScreen(
-            event: settings.arguments as Event,
-          ),
-        );
+            builder: (_) =>
+                EventDetailsScreen(event: settings.arguments as Event));
+      case RouterNames.paymentRoute:
+        return MaterialPageRoute(builder: (_) => const PaymentScreen());
+      case RouterNames.newCardRoute:
+        return MaterialPageRoute(builder: (_) => const NewCardScreen());
       default:
         return unDefinedRoute();
     }

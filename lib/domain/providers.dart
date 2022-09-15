@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ticket_app/domain/models/upcoming_events.dart';
 
 import '../presentation/styles/app_theme.dart';
-import '../presentation/home/home_mock.dart';
 
 final themeProvider = StateProvider((ref) => getApplicationLightTheme());
 

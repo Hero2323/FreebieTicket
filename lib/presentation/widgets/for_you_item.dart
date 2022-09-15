@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:ticket_app/presentation/router/router_names.dart';
 
 import '../../domain/models/event.dart';

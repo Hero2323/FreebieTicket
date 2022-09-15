@@ -8,7 +8,7 @@ ThemeData getApplicationLightTheme() {
       elevation: 2,
       titleTextStyle: TextStyle(
         color: AppColors.black,
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
     ),

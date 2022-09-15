@@ -9,7 +9,6 @@ import 'package:ticket_app/presentation/widgets/for_you_item.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_events_item.dart';
 
 import '../../domain/models/upcoming_events.dart';
-import '../../domain/providers.dart';
 import '../resources/asset_images.dart';
 import '../widgets/collection_item.dart';
 import '../widgets/filter_item.dart';
