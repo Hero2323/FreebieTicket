@@ -13,7 +13,7 @@ import '../styles/app_styles.dart';
 class EventDetailsScreen extends StatefulWidget {
   final Event event;
 
-  EventDetailsScreen({
+  const EventDetailsScreen({
     Key? key,
     required this.event,
   }) : super(key: key);
@@ -29,11 +29,6 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
 
   @override
   void initState() {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColors.transparent,
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.light,
-    ));
     super.initState();
   }
 
@@ -56,6 +51,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
       },
       child: Material(
         child: SingleChildScrollView(
+          padding: EdgeInsets.zero,
           controller: controller,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -249,18 +245,23 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   ref.showMore ? null : TextOverflow.ellipsis,
                             ),
                           ),
-                          Consumer(
-                            builder: (context, ref, child) => TextButton(
-                              onPressed: () => ref.toggleShowMore(),
-                              child: Text(
-                                ref.showMore ? 'Show Less' : 'Show more',
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  color: AppColors.red,
-                                ),
-                              ),
-                            ),
-                          ),
+                          widget.event.details.willTextOverflow(
+                                  lightTicketsSubtitle,
+                                  maxWidth:
+                                      MediaQuery.of(context).size.width - 32)
+                              ? Consumer(
+                                  builder: (context, ref, child) => TextButton(
+                                    onPressed: () => ref.toggleShowMore(),
+                                    child: Text(
+                                      ref.showMore ? 'Show Less' : 'Show more',
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox(),
                           const SizedBox(height: 40),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -300,7 +301,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          widget.event.updates![index].date,
+                                          widget.event.updates[index].date,
                                           style: TextStyle(
                                             color: AppColors.black
                                                 .withOpacity(0.5),
@@ -310,20 +311,27 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                         ),
                                         const SizedBox(height: 5),
                                         Text(
-                                          widget.event.updates![index].contents,
+                                          widget.event.updates[index].contents,
                                           style: const TextStyle(
                                             fontSize: 15,
                                             color: AppColors.grey,
                                           ),
                                           textAlign: TextAlign.justify,
-                                          maxLines:
-                                              ref.updatesReadMore ? null : 2,
-                                          overflow: ref.updatesReadMore
+                                          maxLines: (ref.updatesReadMore ||
+                                                  widget.event.updates.length ==
+                                                      1)
+                                              ? null
+                                              : 2,
+                                          overflow: (ref.updatesReadMore ||
+                                                  widget.event.updates.length ==
+                                                      1)
                                               ? null
                                               : TextOverflow.ellipsis,
                                         ),
                                         const SizedBox(height: 16),
-                                        if (index == 0 && !ref.updatesReadMore)
+                                        if (index == 0 &&
+                                            !ref.updatesReadMore &&
+                                            widget.event.updates.length > 1)
                                           TextButton(
                                             onPressed: () =>
                                                 ref.toggleUpdatesReadMore(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 
 import '../resources/asset_images.dart';
@@ -55,7 +56,9 @@ class ProfileScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleSmall),
               trailing: const Icon(Icons.arrow_forward_ios,
                   size: 16, color: AppColors.red),
-              onTap: () {},
+              onTap: () {
+                Share.share('sdasd');
+              },
             ),
             ListTile(
               leading: const Icon(Icons.help, color: AppColors.red),

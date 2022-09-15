@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' show ThemeData;
+import 'package:flutter/material.dart'
+    show TextDirection, TextPainter, TextSpan, TextStyle, ThemeData;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../presentation/styles/app_theme.dart';
 import 'providers.dart';
@@ -94,4 +95,18 @@ extension EventsLoaded on WidgetRef {
 
   void setEventsLoaded(bool value) =>
       read(eventsLoadedProvider.notifier).state = value;
+}
+
+extension WillTextOverflow on String {
+  bool willTextOverflow(TextStyle style,
+      {double minWidth = 0,
+      double maxWidth = double.infinity,
+      int maxLines = 2}) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: this, style: style),
+      maxLines: maxLines,
+      textDirection: TextDirection.ltr,
+    )..layout(minWidth: minWidth, maxWidth: maxWidth);
+    return textPainter.didExceedMaxLines;
+  }
 }
