@@ -1,53 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ticket_app/domain/ext.dart';
+import 'package:ticket_app/domain/providers.dart';
+import 'package:ticket_app/presentation/payment/payment_states.dart';
+
+import 'package:ticket_app/presentation/payment/payment_viewmodel.dart';
 import 'package:ticket_app/presentation/router/router_names.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
-
+import '../widgets/order_placed_dialog.dart';
 import '../widgets/payment_option.dart';
 
-class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key});
+class PaymentScreen extends ConsumerStatefulWidget {
+  const PaymentScreen({required this.price, super.key});
+
+  final int price;
 
   @override
-  State<PaymentScreen> createState() => _PaymentScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() {
+    return _PaymentScreenState();
+  }
 }
 
-class _PaymentScreenState extends State<PaymentScreen> {
+class _PaymentScreenState extends ConsumerState<PaymentScreen> {
+  final PaymentViewModel _viewModel = PaymentViewModel();
   var flag = 0;
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<StateController<PaymentStates>>(paymentStateProvider.state,
+        (previous, current) {
+      switch (current.state.runtimeType) {
+        case ErrorPaymentState:
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text((current.state as ErrorPaymentState).msg)),
+          );
+          break;
+        case SuccessPaymentState:
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              RouterNames.mainRoute, (Route<dynamic> route) => false);
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => const OrderPlacedDialog());
+          break;
+      }
+    });
     return Scaffold(
       backgroundColor: AppColors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(RouterNames.newCardRoute);
-                  // showDialog(
-                  //   context: context,
-                  //   builder: (BuildContext context) {
-                  //     return const OrderPlacedDialog();
-                  //   },
-                  // );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.red,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                ),
-                child: const Text(
-                  "Continue",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+            ref.isPaymentStateLoading
+                ? const CircularProgressIndicator(color: AppColors.red)
+                : Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _viewModel.makePayment(
+                          ref,
+                          widget.price.toString(),
+                          'USD',
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.red,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      child: const Text(
+                        "Continue",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

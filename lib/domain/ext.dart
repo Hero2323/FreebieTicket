@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' show ThemeData;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../presentation/payment/payment_states.dart';
 import '../presentation/styles/app_theme.dart';
 import 'providers.dart';
 
@@ -32,16 +33,20 @@ extension SelectedFilter on WidgetRef {
 
 extension ShowMore on WidgetRef {
   bool get showMore => watch(eventDetailsShowMoreProvider);
+
   void toggleShowMore() => read(eventDetailsShowMoreProvider.notifier).state =
       !read(eventDetailsShowMoreProvider);
 }
 
 extension EventUpdates on WidgetRef {
   bool get updateNotification => watch(eventDetailsUpdateNotificationProvider);
+
   void toggleUpdateNotification() =>
       read(eventDetailsUpdateNotificationProvider.notifier).state =
           !read(eventDetailsUpdateNotificationProvider);
+
   bool get updatesReadMore => watch(eventDetailsUpdatesReadMoreProvider);
+
   void toggleUpdatesReadMore() =>
       read(eventDetailsUpdatesReadMoreProvider.notifier).state =
           !read(eventDetailsUpdatesReadMoreProvider);
@@ -94,4 +99,17 @@ extension EventsLoaded on WidgetRef {
 
   void setEventsLoaded(bool value) =>
       read(eventsLoadedProvider.notifier).state = value;
+}
+
+extension PaymentStatesExtension on WidgetRef {
+  PaymentStates get paymentState => watch(paymentStateProvider);
+
+  void setPaymentState(PaymentStates paymentStates) =>
+      read(paymentStateProvider.notifier).state = paymentStates;
+
+  bool get isPaymentStateLoading => paymentState is LoadingPaymentState;
+
+  bool get isPaymentStateSuccess => paymentState is SuccessPaymentState;
+
+  bool get isPaymentStateError => paymentState is ErrorPaymentState;
 }

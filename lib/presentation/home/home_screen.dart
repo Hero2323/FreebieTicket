@@ -2,22 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/presentation/home/home_viewmodel.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 import 'package:ticket_app/presentation/widgets/for_you_item.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_events_item.dart';
-
-import '../../domain/models/upcoming_events.dart';
 import '../resources/asset_images.dart';
 import '../widgets/collection_item.dart';
 import '../widgets/filter_item.dart';
 import 'home_mock.dart';
-
-Future<List<UpcomingEvents>> getUpcomingEvents() async {
-  await Future.delayed(const Duration(seconds: 1));
-  return upcomingEvents;
-}
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

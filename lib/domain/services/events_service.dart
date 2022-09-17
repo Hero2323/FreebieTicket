@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'dart:convert';
 
 import '../models/event.dart';
@@ -8,7 +9,7 @@ import '../network/responses/events_response.dart';
 import '../network/responses/upcoming_events_response.dart';
 import '../remote/dio_helper.dart';
 
-class EventsRepository {
+class EventsService {
   Future<List<Event>> getEvents() async {
     try {
       Response response = await DioHelper.getData(url: epGetEvents, query: {});
@@ -18,26 +19,26 @@ class EventsRepository {
         return eventsResponse.events;
       }
     } catch (exception) {
-      print("Catch exception1: $exception");
+      debugPrint("Catch exception1: $exception");
     }
     return <Event>[];
   }
 
   Future<List<UpcomingEvents>> getUpcomingEvents() async {
-    // try {
-    Response response =
-        await DioHelper.getData(url: epGetUpcomingEvents, query: {});
+    try {
+      Response response =
+          await DioHelper.getData(url: epGetUpcomingEvents, query: {});
 
-    if (response.statusCode == 200) {
-      print(response.data.toString());
-      UpcomingEventsResponse eventsResponse =
-          UpcomingEventsResponse.fromJson(json.decode(response.data));
-      return eventsResponse.upcomingevents;
+      if (response.statusCode == 200) {
+        debugPrint(response.data.toString());
+        UpcomingEventsResponse eventsResponse =
+            UpcomingEventsResponse.fromJson(json.decode(response.data));
+        return eventsResponse.upcomingevents;
+      }
+      debugPrint("Get Events: statusCode = ${response.statusCode}");
+    } catch (exception) {
+      debugPrint("Catch exception2: $exception");
     }
-    print("Get Events: statusCode = ${response.statusCode}");
-    // } catch (exception) {
-    //   print("Catch exception2: $exception");
-    // }
     return <UpcomingEvents>[];
   }
 }

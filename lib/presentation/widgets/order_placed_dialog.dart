@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_app/presentation/router/router_names.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 
 class OrderPlacedDialog extends StatelessWidget {
@@ -44,8 +43,6 @@ class OrderPlacedDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.of(context)
-                    .pushReplacementNamed(RouterNames.mainRoute);
               },
               child: const Text(
                 "OK",

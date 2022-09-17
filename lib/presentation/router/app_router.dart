@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_app/presentation/new_card/new_card_screen.dart';
-import 'package:ticket_app/presentation/payment/payment_screen.dart';
 
 import '../../domain/models/event.dart';
-import '../event_details/event_details_screen.dart';
-import 'router_names.dart';
-
 import '../main/main_screen.dart';
+import '../event_details/event_details_screen.dart';
+import '../payment/payment_screen.dart';
+import 'router_names.dart';
 
 class AppRouter {
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -18,9 +16,8 @@ class AppRouter {
             builder: (_) =>
                 EventDetailsScreen(event: settings.arguments as Event));
       case RouterNames.paymentRoute:
-        return MaterialPageRoute(builder: (_) => const PaymentScreen());
-      case RouterNames.newCardRoute:
-        return MaterialPageRoute(builder: (_) => const NewCardScreen());
+        return MaterialPageRoute(
+            builder: (_) => PaymentScreen(price: settings.arguments as int));
       default:
         return unDefinedRoute();
     }

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ticket_app/presentation/payment/payment_states.dart';
 
 import '../presentation/styles/app_theme.dart';
 
@@ -30,3 +31,6 @@ final eventsLoadedProvider = StateProvider(
       ref.watch(showMoreUpcomingEventsProvider).isNotEmpty &&
       ref.watch(forYouProvider),
 );
+
+final paymentStateProvider =
+    StateProvider<PaymentStates>((ref) => InitialPaymentState());

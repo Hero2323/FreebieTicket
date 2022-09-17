@@ -23,10 +23,9 @@ class DioHelper {
     required String url,
     Map<String, dynamic>? query,
     required Map<String, dynamic> body,
+    Map<String, dynamic>? headers,
   }) async {
-    dio!.options.headers = {
-      'Content-Type': 'application/json',
-    };
+    if (headers != null) dio!.options.headers = headers;
     return await dio!.post(url, data: body);
   }
 }

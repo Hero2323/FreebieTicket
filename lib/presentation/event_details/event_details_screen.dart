@@ -444,7 +444,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, RouterNames.paymentRoute);
+                                  Navigator.pushNamed(
+                                      context, RouterNames.paymentRoute,
+                                      arguments: widget.event.prices[0]);
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
