@@ -62,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
                   size: 16, color: AppColors.red),
               onTap: () {
                 // TODO: Think of something to share
-                Share.share('sdasd');
+                Share.share('https://github.com/Hero2323/FreebieTicket');
               },
             ),
             ListTile(

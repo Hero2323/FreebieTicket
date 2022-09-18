@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' show Marker;
+import 'package:google_maps_flutter/google_maps_flutter.dart'
+    show LatLng, Marker, MarkerId;
 
 import '../presentation/styles/app_theme.dart';
 import 'models/event.dart';
@@ -56,3 +57,7 @@ final filteredUpcomingEventsProvider =
     return events.where((event) => event.label == 'sport').toList();
   }
 });
+
+final eventDetailsMarkersMapProvider = StateProvider<Map<String, Marker>>(
+  (ref) => {},
+);
