@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/presentation/home/home_viewmodel.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 import 'package:ticket_app/presentation/widgets/for_you_item.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_events_item.dart';
-
 import '../resources/asset_images.dart';
 import '../widgets/collection_item.dart';
 import '../widgets/filter_item.dart';
@@ -189,12 +189,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     children: List.generate(
                       _homeViewModel.upcomingEvents.length,
                       (index) {
-                        _homeViewModel.upcomingEvents
-                            .sort((a, b) => a.date.compareTo(b.date));
-                        return UpcomingEventsItem(
-                          index: index,
-                          upcomingEvents: _homeViewModel.upcomingEvents[index],
-                        );
+                        final filteredEvents = ref.getFilteredUpcomingEvents(
+                            _homeViewModel.upcomingEvents[index].events);
+                        return filteredEvents.length > 0
+                            ? UpcomingEventsItem(
+                                index: index,
+                                upcomingEvents: _homeViewModel
+                                    .upcomingEvents[index]
+                                    .copyWith(
+                                  events: filteredEvents,
+                                  noOfEvents: filteredEvents.length,
+                                ),
+                              )
+                            : SizedBox();
                       },
                     ),
                   )

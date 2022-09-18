@@ -35,7 +35,11 @@ class FilterItem extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundColor: filter.color.withOpacity(0.1),
-                child: SvgPicture.asset(filter.image),
+                child: SvgPicture.asset(
+                  filter.image,
+                  height: 18,
+                  color: filter.color,
+                ),
               ),
               const SizedBox(width: 10),
               Text(

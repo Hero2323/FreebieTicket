@@ -1,19 +1,10 @@
-import 'package:flutter/material.dart'
-    show
-        BorderRadius,
-        BuildContext,
-        RoundedRectangleBorder,
-        TextDirection,
-        TextPainter,
-        TextSpan,
-        TextStyle,
-        ThemeData,
-        showModalBottomSheet;
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart'
     show LatLng, Marker, MarkerId;
 
 import '../presentation/resources/asset_images.dart';
+import '../presentation/payment/payment_states.dart';
 import '../presentation/styles/app_theme.dart';
 import '../presentation/widgets/search_bottom_sheet.dart';
 import 'models/event.dart';
@@ -48,16 +39,20 @@ extension SelectedFilter on WidgetRef {
 
 extension ShowMore on WidgetRef {
   bool get showMore => watch(eventDetailsShowMoreProvider);
+
   void toggleShowMore() => read(eventDetailsShowMoreProvider.notifier).state =
       !read(eventDetailsShowMoreProvider);
 }
 
 extension EventUpdates on WidgetRef {
   bool get updateNotification => watch(eventDetailsUpdateNotificationProvider);
+
   void toggleUpdateNotification() =>
       read(eventDetailsUpdateNotificationProvider.notifier).state =
           !read(eventDetailsUpdateNotificationProvider);
+
   bool get updatesReadMore => watch(eventDetailsUpdatesReadMoreProvider);
+
   void toggleUpdatesReadMore() =>
       read(eventDetailsUpdatesReadMoreProvider.notifier).state =
           !read(eventDetailsUpdatesReadMoreProvider);
@@ -154,4 +149,22 @@ extension SharedEvents on WidgetRef {
   void setMarker(Marker marker) {
     read(markersMapProvider.notifier).state[marker.markerId.value] = marker;
   }
+}
+
+extension PaymentStatesExtension on WidgetRef {
+  PaymentStates get paymentState => watch(paymentStateProvider);
+
+  void setPaymentState(PaymentStates paymentStates) =>
+      read(paymentStateProvider.notifier).state = paymentStates;
+
+  bool get isPaymentStateLoading => paymentState is LoadingPaymentState;
+
+  bool get isPaymentStateSuccess => paymentState is SuccessPaymentState;
+
+  bool get isPaymentStateError => paymentState is ErrorPaymentState;
+}
+
+extension FilteredUpcomingEvents on WidgetRef {
+  List<Event> getFilteredUpcomingEvents(List<Event> events) =>
+      watch(filteredUpcomingEventsProvider(events));
 }

@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ticket_app/domain/ext.dart';
-import 'package:ticket_app/domain/repository/events_repository.dart';
+import 'package:ticket_app/domain/services/events_service.dart';
 
 import '../../domain/models/event.dart';
 import '../../domain/models/upcoming_events.dart';
 import '../../domain/providers.dart';
 
 class HomeViewModel {
-  EventsRepository eventsRepository = EventsRepository();
+  EventsService eventsRepository = EventsService();
   List<Event> events = [];
   List<UpcomingEvents> upcomingEvents = [];
 

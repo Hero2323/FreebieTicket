@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ticket_app/domain/ext.dart';
+import 'package:ticket_app/presentation/router/router_names.dart';
 import 'package:ticket_app/presentation/widgets/organizer_item.dart';
 import '../../domain/models/event.dart';
 import '../resources/asset_images.dart';
@@ -450,7 +451,11 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                 ],
                               ),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, RouterNames.paymentRoute,
+                                      arguments: widget.event.prices[0]);
+                                },
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all(AppColors.red),

@@ -3,6 +3,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' show Marker;
 
 import '../presentation/styles/app_theme.dart';
 import 'models/event.dart';
+import 'package:ticket_app/presentation/payment/payment_states.dart';
+
+import '../presentation/styles/app_theme.dart';
 
 final themeProvider = StateProvider((ref) => getApplicationLightTheme());
 
@@ -36,3 +39,20 @@ final eventsLoadedProvider = StateProvider(
 final sharedEventsProvider = StateProvider<List<Event>>((ref) => []);
 
 final markersMapProvider = StateProvider<Map<String, Marker>>((ref) => {});
+
+final paymentStateProvider =
+    StateProvider<PaymentStates>((ref) => InitialPaymentState());
+
+final filteredUpcomingEventsProvider =
+    StateProvider.family<List<Event>, List<Event>>((ref, events) {
+  final selectedFilter = ref.watch(selectedFilterProvider);
+  if (selectedFilter == -1) {
+    return events;
+  } else if (selectedFilter == 0) {
+    return events.where((event) => event.label == 'art').toList();
+  } else if (selectedFilter == 1) {
+    return events.where((event) => event.label == 'music').toList();
+  } else {
+    return events.where((event) => event.label == 'sport').toList();
+  }
+});

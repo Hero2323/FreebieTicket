@@ -7,6 +7,7 @@ class AssetImages {
   static const String sportsIcon = '${svgBaseUrl}sports.svg';
   static const String yourAreaIcon = '${svgBaseUrl}your_area.svg';
   static const String locationIcon = '${svgBaseUrl}location.svg';
+  static const String artIcon = '${svgBaseUrl}art.svg';
   static const String appLogo = '${svgBaseUrl}app_logo.svg';
   static const String gmail = '${svgBaseUrl}gmail.svg';
   static const String linkedin = '${svgBaseUrl}linkedin.svg';

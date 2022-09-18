@@ -185,17 +185,11 @@ List<String> popular = [
 // TODO: Change Theme
 // TODO: Localization
 
-// TODO: Publish to Play Store
-// TODO: Settings screen
-// TODO: Add Filtration in home screen for upcoming events
 // TODO: Add contact us & about us screens
 // TODO: Make a good readme
 
 
-// ! FIX THE GOOGLE MAPS CRASH ISSUE
 // TODO: Location in event details
-// TODO: Implement a payment method (Stripe)
-//TODO: Add (Add Card Screen) and (Add Address Screen)
 
 // 5Qc-ml92BYvwKwz6E_yn1q2r9Jto4hQrrPz4_ifnTeGVorZCAF22NA -- secret
 // KEnh6vjgBEP37MJkPhU7qbm63ABjR5Jku8pk9FQi -- token

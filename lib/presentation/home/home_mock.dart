@@ -1,9 +1,4 @@
-import 'package:ticket_app/domain/models/update.dart';
-
-import '../../domain/models/event.dart';
 import '../../domain/models/filter.dart';
-import '../../domain/models/organizer.dart';
-import '../../domain/models/upcoming_events.dart';
 import '../resources/asset_images.dart';
 import '../styles/app_colors.dart';
 
@@ -395,8 +390,8 @@ List<Filter> filters = [
   Filter(
     id: 1,
     color: AppColors.red,
-    image: AssetImages.yourAreaIcon,
-    name: 'Your Area'.toUpperCase(),
+    image: AssetImages.artIcon,
+    name: 'Arts'.toUpperCase(),
   ),
   Filter(
     id: 2,

@@ -6,6 +6,9 @@ import '../contact_us/contact_us_screen.dart';
 import '../event_details/event_details_screen.dart';
 import '../styles/app_colors.dart';
 import '../main/main_screen.dart';
+import '../main/main_screen.dart';
+import '../event_details/event_details_screen.dart';
+import '../payment/payment_screen.dart';
 import 'router_names.dart';
 
 class AppRouter {
@@ -26,6 +29,13 @@ class AppRouter {
         );
       case RouterNames.contactUsRoute:
         return MaterialPageRoute(builder: (_) => const ContactUsScreen());
+      case RouterNames.eventDetailsRoute:
+        return MaterialPageRoute(
+            builder: (_) =>
+                EventDetailsScreen(event: settings.arguments as Event));
+      case RouterNames.paymentRoute:
+        return MaterialPageRoute(
+            builder: (_) => PaymentScreen(price: settings.arguments as int));
       default:
         return unDefinedRoute();
     }
