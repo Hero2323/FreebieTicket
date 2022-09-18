@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart'
-    show TextDirection, TextPainter, TextSpan, TextStyle, ThemeData;
+    show
+        BorderRadius,
+        BuildContext,
+        RoundedRectangleBorder,
+        TextDirection,
+        TextPainter,
+        TextSpan,
+        TextStyle,
+        ThemeData,
+        showModalBottomSheet;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart'
+    show LatLng, Marker, MarkerId;
+
+import '../presentation/resources/asset_images.dart';
 import '../presentation/styles/app_theme.dart';
+import '../presentation/widgets/search_bottom_sheet.dart';
+import 'models/event.dart';
 import 'providers.dart';
 
 extension CurrentTheme on WidgetRef {
@@ -108,5 +123,35 @@ extension WillTextOverflow on String {
       textDirection: TextDirection.ltr,
     )..layout(minWidth: minWidth, maxWidth: maxWidth);
     return textPainter.didExceedMaxLines;
+  }
+}
+
+extension SharedEvents on WidgetRef {
+  List<Event> get sharedEvents => watch(sharedEventsProvider);
+
+  void setSharedEvents(List<Event> events) =>
+      read(sharedEventsProvider.notifier).state = events;
+
+  String getMarkerIcon(Event event) {
+    if (event.label == 'sports')
+      return 'assets/images/sport_marker.png';
+    else if (event.label == 'art')
+      return 'assets/images/sport_marker.png';
+    else
+      return 'assets/images/music_marker.png';
+  }
+
+  Map<String, Marker> initMarkersMap() => {
+        for (final event in sharedEvents)
+          '${event.id}': Marker(
+            markerId: MarkerId('${event.id}'),
+            position: LatLng(event.eventLatLng.lat, event.eventLatLng.lng),
+          )
+      };
+
+  Map<String, Marker> get markersMap => watch(markersMapProvider);
+
+  void setMarker(Marker marker) {
+    read(markersMapProvider.notifier).state[marker.markerId.value] = marker;
   }
 }

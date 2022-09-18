@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../domain/models/event.dart';
+import '../contact_us/contact_us_screen.dart';
 import '../event_details/event_details_screen.dart';
 import '../styles/app_colors.dart';
-import 'router_names.dart';
-
 import '../main/main_screen.dart';
+import 'router_names.dart';
 
 class AppRouter {
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -24,6 +24,8 @@ class AppRouter {
             event: settings.arguments as Event,
           ),
         );
+      case RouterNames.contactUsRoute:
+        return MaterialPageRoute(builder: (_) => const ContactUsScreen());
       default:
         return unDefinedRoute();
     }

@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ticket_app/domain/models/upcoming_events.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' show Marker;
 
 import '../presentation/styles/app_theme.dart';
-import '../presentation/home/home_mock.dart';
+import 'models/event.dart';
 
 final themeProvider = StateProvider((ref) => getApplicationLightTheme());
 
@@ -32,3 +32,7 @@ final eventsLoadedProvider = StateProvider(
       ref.watch(showMoreUpcomingEventsProvider).isNotEmpty &&
       ref.watch(forYouProvider),
 );
+
+final sharedEventsProvider = StateProvider<List<Event>>((ref) => []);
+
+final markersMapProvider = StateProvider<Map<String, Marker>>((ref) => {});

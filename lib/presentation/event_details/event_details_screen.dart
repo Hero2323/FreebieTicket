@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/presentation/widgets/organizer_item.dart';
 import '../../domain/models/event.dart';
@@ -363,7 +362,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                     separatorBuilder: (context, index) =>
                                         const SizedBox(height: 10),
                                     itemCount: ref.updatesReadMore
-                                        ? widget.event.updates!.length
+                                        ? widget.event.updates.length
                                         : 1,
                                   ),
                                 )

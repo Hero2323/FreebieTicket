@@ -3,9 +3,7 @@ import 'dart:convert';
 
 import '../models/event.dart';
 import '../models/upcoming_events.dart';
-import '../network/requests/events_request.dart';
 import '../network/end_points.dart';
-import '../network/requests/upcoming_events_request.dart';
 import '../network/responses/events_response.dart';
 import '../network/responses/upcoming_events_response.dart';
 import '../remote/dio_helper.dart';

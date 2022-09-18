@@ -8,17 +8,15 @@ import 'package:ticket_app/presentation/styles/app_colors.dart';
 import 'package:ticket_app/presentation/widgets/for_you_item.dart';
 import 'package:ticket_app/presentation/widgets/upcoming_events_item.dart';
 
-import '../../domain/models/upcoming_events.dart';
-import '../../domain/providers.dart';
 import '../resources/asset_images.dart';
 import '../widgets/collection_item.dart';
 import '../widgets/filter_item.dart';
 import 'home_mock.dart';
 
-Future<List<UpcomingEvents>> getUpcomingEvents() async {
-  await Future.delayed(const Duration(seconds: 1));
-  return upcomingEvents;
-}
+// Future<List<UpcomingEvents>> getUpcomingEvents() async {
+//   await Future.delayed(const Duration(seconds: 1));
+//   return upcomingEvents;
+// }
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -45,7 +43,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       },
       child: ref.eventsLoaded
           ? SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 45),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -66,7 +64,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 12),
                   SizedBox(
                     height: 280,
                     child: ListView.separated(
@@ -79,12 +77,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       itemCount: _homeViewModel.events.length,
                     ),
                   ),
-                  const SizedBox(height: 56),
+                  const SizedBox(height: 32),
                   Text(
                     'Collections',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 12),
                   SizedBox(
                     height: 160,
                     child:
@@ -107,12 +105,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 55),
+                  const SizedBox(height: 32),
                   Text(
                     'Discover',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 12),
                   Consumer(
                     builder: (context, ref, child) => SizedBox(
                       height: 60,
@@ -139,7 +137,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 55),
+                  const SizedBox(height: 32),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -171,7 +169,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 32),
 
                   // ListView.separated(
                   //   physics: const NeverScrollableScrollPhysics(),

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/domain/repository/events_repository.dart';
 
 import '../../domain/models/event.dart';
@@ -17,6 +18,8 @@ class HomeViewModel {
 
   getEvents(WidgetRef ref) => eventsRepository.getEvents().then((value) {
         events.addAll(value);
+        ref.read(sharedEventsProvider.notifier).state = events;
+        ref.read(markersMapProvider.notifier).state = ref.initMarkersMap();
         ref.read(forYouProvider.notifier).state = true;
       });
 

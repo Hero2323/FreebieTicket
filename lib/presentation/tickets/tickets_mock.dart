@@ -1,3 +1,5 @@
+import 'package:ticket_app/domain/models/event_latlng.dart';
+
 import '../../domain/models/event.dart';
 import '../../domain/models/filter.dart';
 import '../../domain/models/organizer.dart';
@@ -49,6 +51,8 @@ List<Event> events = [
             'topic and you\'ll get a list of all the related topics.',
       ),
     ],
+    eventLatLng: EventLatLng(lat: 52.2296756, lng: 21.0122287),
+    label: 'music',
   ),
   Event(
     id: 12,
@@ -67,6 +71,8 @@ List<Event> events = [
     ),
     discountPrices: [30, 80],
     updates: [],
+    eventLatLng: EventLatLng(lat: 52.2296756, lng: 21.0122287),
+    label: 'music',
   ),
   Event(
     id: 13,
@@ -93,6 +99,8 @@ List<Event> events = [
             'topic and you\'ll get a list of all the related topics.',
       ),
     ],
+    eventLatLng: EventLatLng(lat: 52.2296756, lng: 21.0122287),
+    label: 'music',
   ),
 ];
 

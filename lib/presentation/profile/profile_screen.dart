@@ -4,6 +4,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 
 import '../resources/asset_images.dart';
+import '../router/router_names.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -44,11 +45,14 @@ class ProfileScreen extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.call, color: AppColors.red),
-              title: Text('Contact Us',
-                  style: Theme.of(context).textTheme.titleSmall),
+              title: Text(
+                'Contact Us',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
               trailing: const Icon(Icons.arrow_forward_ios,
                   size: 16, color: AppColors.red),
-              onTap: () {},
+              onTap: () =>
+                  Navigator.of(context).pushNamed(RouterNames.contactUsRoute),
             ),
             ListTile(
               leading: const Icon(Icons.share, color: AppColors.red),
@@ -57,6 +61,7 @@ class ProfileScreen extends StatelessWidget {
               trailing: const Icon(Icons.arrow_forward_ios,
                   size: 16, color: AppColors.red),
               onTap: () {
+                // TODO: Think of something to share
                 Share.share('sdasd');
               },
             ),
