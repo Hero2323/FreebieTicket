@@ -64,7 +64,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                 : Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        _viewModel.makePayment(
+                        _viewModel.makeStripePayment(
                           ref,
                           widget.event.prices[0].toString(),
                           'USD',
