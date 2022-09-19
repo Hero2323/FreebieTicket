@@ -35,7 +35,7 @@ class AppRouter {
                 EventDetailsScreen(event: settings.arguments as Event));
       case RouterNames.paymentRoute:
         return MaterialPageRoute(
-            builder: (_) => PaymentScreen(price: settings.arguments as int));
+            builder: (_) => PaymentScreen(event: settings.arguments as Event));
       default:
         return unDefinedRoute();
     }

@@ -30,12 +30,10 @@ class EventsService {
           await DioHelper.getData(url: epGetUpcomingEvents, query: {});
 
       if (response.statusCode == 200) {
-        debugPrint(response.data.toString());
         UpcomingEventsResponse eventsResponse =
             UpcomingEventsResponse.fromJson(json.decode(response.data));
         return eventsResponse.upcomingevents;
       }
-      debugPrint("Get Events: statusCode = ${response.statusCode}");
     } catch (exception) {
       debugPrint("Catch exception2: $exception");
     }

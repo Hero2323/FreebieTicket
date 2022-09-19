@@ -14,6 +14,11 @@ class HomeViewModel {
   init(WidgetRef ref) {
     getEvents(ref);
     getUpcomingEvents(ref);
+    ref.refresh(showMoreUpcomingEventsProvider);
+    ref.refresh(forYouProvider);
+    ref.refresh(eventsLoadedProvider);
+    ref.refresh(timeoutProvider);
+    ref.refresh(timeoutProviderHelper);
   }
 
   getEvents(WidgetRef ref) => eventsRepository.getEvents().then((value) {

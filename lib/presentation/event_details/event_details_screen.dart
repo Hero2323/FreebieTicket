@@ -537,29 +537,40 @@ class _EventDetailsScreenState extends ConsumerState<EventDetailsScreen> {
                                   ),
                                 ],
                               ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, RouterNames.paymentRoute,
-                                      arguments: widget.event.prices[0]);
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(AppColors.red),
-                                  padding: MaterialStateProperty.all(
-                                      const EdgeInsets.symmetric(
-                                          horizontal: 32)),
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    ref.alreadyPurchased(widget.event)
+                                        ? null
+                                        : Navigator.pushNamed(
+                                            context,
+                                            RouterNames.paymentRoute,
+                                            arguments: widget.event,
+                                          );
+                                  },
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                      ref.alreadyPurchased(widget.event)
+                                          ? AppColors.grey
+                                          : AppColors.red,
+                                    ),
+                                    padding: MaterialStateProperty.all(
+                                        const EdgeInsets.symmetric(
+                                            horizontal: 32)),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                child: const Text(
-                                  'Buy Tickets',
-                                  style: TextStyle(
-                                    color: AppColors.white,
-                                    fontSize: 15,
+                                  child: Text(
+                                    ref.alreadyPurchased(widget.event)
+                                        ? 'Purchased'
+                                        : 'Buy Tickets',
+                                    style: TextStyle(
+                                      color: AppColors.white,
+                                      fontSize: 15,
+                                    ),
                                   ),
                                 ),
                               ),

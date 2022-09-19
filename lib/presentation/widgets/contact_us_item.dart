@@ -31,11 +31,23 @@ class ContactUsItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 45,
-              backgroundImage: AssetImage(developer.image),
+            InkWell(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Image(
+                  image: AssetImage(developer.image),
+                ),
+              )),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: AssetImage(developer.image), fit: BoxFit.contain),
+                ),
+                width: 60,
+                height: 60,
+              ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 8),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

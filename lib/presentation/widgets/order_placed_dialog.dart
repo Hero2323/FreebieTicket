@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 
+import '../router/router_names.dart';
+
 class OrderPlacedDialog extends StatelessWidget {
   const OrderPlacedDialog({Key? key}) : super(key: key);
 

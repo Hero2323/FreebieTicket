@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ticket_app/domain/constants.dart';
 
 import 'package:ticket_app/domain/ext.dart';
+import 'package:ticket_app/domain/providers.dart';
 import 'package:ticket_app/presentation/home/home_viewmodel.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 import 'package:ticket_app/presentation/widgets/for_you_item.dart';
@@ -36,12 +38,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(timeoutProviderHelper);
     return NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (overflow) {
         overflow.disallowIndicator();
         return false;
       },
-      child: ref.eventsLoaded
+      child: ref.isEventsLoaded
           ? SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
               child: Column(
@@ -60,6 +63,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         onPressed: () {},
                         icon: SvgPicture.asset(
                           AssetImages.filterIcon,
+                          color: AppColors.grey,
                         ),
                       ),
                     ],
@@ -107,7 +111,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    'Discover',
+                    'Upcoming',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const SizedBox(height: 12),
@@ -137,50 +141,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SvgPicture.asset(AssetImages.locationIcon),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Warsaw'.toUpperCase(),
-                        style: const TextStyle(
-                          color: AppColors.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Upcoming',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.arrow_forward,
-                          color: AppColors.red,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 32),
-
-                  // ListView.separated(
-                  //   physics: const NeverScrollableScrollPhysics(),
-                  //   shrinkWrap: true,
-                  //   itemBuilder: (context, index) => UpcomingDayItem(
-                  //     date: upcomingDayItemList[index].date,
-                  //     dayUpcomingList: upcomingDayItemList[index],
-                  //   ),
-                  //   separatorBuilder: (context, index) => const SizedBox(height: 10),
-                  //   itemCount: upcomingDayItemList.length,
-                  // )
+                  const SizedBox(height: 24),
                   StaggeredGrid.count(
                     crossAxisCount: MediaQuery.of(context).size.width ~/ 340,
                     axisDirection: AxisDirection.down,
@@ -208,9 +169,41 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ],
               ),
             )
-          : const Center(
-              child: CircularProgressIndicator(color: AppColors.red),
-            ),
+          : ref.isEventsLoading
+              ? const Center(
+                  child: CircularProgressIndicator(color: AppColors.red),
+                )
+              : Center(
+                  child: Container(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.signal_wifi_connected_no_internet_4_sharp,
+                          size: 200, color: AppColors.grey.withOpacity(0.5)),
+                      const SizedBox(height: 16),
+                      Text(
+                        'No Internet, please try again later',
+                        style: TextStyle(
+                          color: AppColors.grey.withOpacity(0.7),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      TextButton(
+                        onPressed: () {
+                          _homeViewModel.init(ref);
+                        },
+                        child: Text(
+                          'Retry',
+                          style: TextStyle(
+                            color: AppColors.red,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
+                ),
     );
   }
 }

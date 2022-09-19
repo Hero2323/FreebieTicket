@@ -34,12 +34,15 @@ class TicketItem extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const ClipRRect(
+                ClipRRect(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
-                  child: Image(
-                    image: AssetImage(AssetImages.ticket),
+                  child: SizedBox(
+                    height: 60,
+                    child: Image(
+                      image: NetworkImage(event.image),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),

@@ -22,17 +22,16 @@ class ProfileScreen extends StatelessWidget {
           highlightColor: Colors.red.withOpacity(0.1),
         ),
         child: ListView(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 32,
+          ),
           children: [
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(32.0),
               child: Align(
                 alignment: Alignment.center,
-                child: CircleAvatar(
-                  backgroundColor: AppColors.white,
-                  radius: 54,
-                  child: SvgPicture.asset(AssetImages.appLogo, height: 110),
-                ),
+                child: Image.asset('assets/images/tickets.png'),
               ),
             ),
             ListTile(
@@ -40,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
               title: Text('Change Language',
                   style: Theme.of(context).textTheme.titleSmall),
               trailing: const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: AppColors.red),
+                  size: 16, color: AppColors.grey),
               onTap: () {},
             ),
             ListTile(
@@ -50,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               trailing: const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: AppColors.red),
+                  size: 16, color: AppColors.grey),
               onTap: () =>
                   Navigator.of(context).pushNamed(RouterNames.contactUsRoute),
             ),
@@ -59,19 +58,10 @@ class ProfileScreen extends StatelessWidget {
               title: Text('Invite Your Friends',
                   style: Theme.of(context).textTheme.titleSmall),
               trailing: const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: AppColors.red),
+                  size: 16, color: AppColors.grey),
               onTap: () {
-                // TODO: Think of something to share
                 Share.share('https://github.com/Hero2323/FreebieTicket');
               },
-            ),
-            ListTile(
-              leading: const Icon(Icons.help, color: AppColors.red),
-              title: Text('About Us',
-                  style: Theme.of(context).textTheme.titleSmall),
-              trailing: const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: AppColors.red),
-              onTap: () {},
             ),
           ],
         ),

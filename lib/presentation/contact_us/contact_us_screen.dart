@@ -50,10 +50,10 @@ List<Developer> developers = [
     github: 'https://github.com/AmaarElgml',
     linkedin: 'https://www.linkedin.com/in/ammar-elgml-5a43381aa/',
     phone: '+201010256390',
-    image: 'assets/images/abdelrahman.jpeg',
+    image: 'assets/images/ammar.jpeg',
   ),
   Developer(
-    name: 'Abdelrahman Jamal',
+    name: 'Abdelrahman \nJamal',
     title: 'Flutter Developer',
     email: 'abdelrahmanjamal5565@gmail.com',
     github: 'https://github.com/Hero2323',

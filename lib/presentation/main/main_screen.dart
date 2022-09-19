@@ -20,29 +20,11 @@ class MainScreen extends ConsumerWidget {
           ? AppBar(
               title: const Text('Home'),
               centerTitle: true,
-              actions: [
-                // TODO: Change the icon & its color based on current theme
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.dark_mode,
-                      color: AppColors.black,
-                    )),
-              ],
             )
           : ref.bottomBarIndex == 3
               ? AppBar(
                   title: const Text('Settings'),
                   centerTitle: true,
-                  actions: [
-                    // TODO: Change the icon & its color based on current theme
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.dark_mode,
-                          color: AppColors.black,
-                        )),
-                  ],
                 )
               : null,
       body: _tabViews[ref.bottomBarIndex],

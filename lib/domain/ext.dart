@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart'
     show LatLng, Marker, MarkerId;
+import 'package:ticket_app/domain/constants.dart';
 
 import '../presentation/resources/asset_images.dart';
 import '../presentation/payment/payment_states.dart';
+import '../presentation/styles/app_colors.dart';
 import '../presentation/styles/app_theme.dart';
 import '../presentation/widgets/search_bottom_sheet.dart';
 import 'models/event.dart';
@@ -21,8 +24,22 @@ extension CurrentTheme on WidgetRef {
 extension BottomNavigationBarIndex on WidgetRef {
   int get bottomBarIndex => watch(bottomBarIndexProvider);
 
-  void setBottomBarIndex(int index) =>
-      read(bottomBarIndexProvider.notifier).state = index;
+  void setBottomBarIndex(int index) {
+    read(bottomBarIndexProvider.notifier).state = index;
+    if (index == 2) {
+      SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: AppColors.transparent,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
+      ));
+    } else {
+      SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: AppColors.white,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+      ));
+    }
+  }
 }
 
 extension SelectedFilter on WidgetRef {
@@ -101,10 +118,19 @@ extension MoreUpcomingEvents on WidgetRef {
 }
 
 extension EventsLoaded on WidgetRef {
-  bool get eventsLoaded => watch(eventsLoadedProvider);
+  ConnectionStates get eventsLoaded => watch(eventsLoadedProvider);
 
-  void setEventsLoaded(bool value) =>
+  void setEventsLoaded(ConnectionStates value) =>
       read(eventsLoadedProvider.notifier).state = value;
+
+  bool get isEventsLoaded =>
+      watch(eventsLoadedProvider) == ConnectionStates.connected;
+  bool get isEventsLoading =>
+      watch(eventsLoadedProvider) == ConnectionStates.loading;
+  bool get isEventsError =>
+      watch(eventsLoadedProvider) == ConnectionStates.error;
+  bool get isEventsTimeout =>
+      watch(eventsLoadedProvider) == ConnectionStates.timeout;
 }
 
 extension WillTextOverflow on String {
@@ -167,4 +193,21 @@ extension PaymentStatesExtension on WidgetRef {
 extension FilteredUpcomingEvents on WidgetRef {
   List<Event> getFilteredUpcomingEvents(List<Event> events) =>
       watch(filteredUpcomingEventsProvider(events));
+}
+
+extension Tickets on WidgetRef {
+  List<Event> get tickets => watch(ticketsOwnedProvider);
+
+  List<Event> get filteredTickets => watch(filteredTicketsOwnedProvider);
+
+  void setTickets(List<Event> tickets) =>
+      read(ticketsOwnedProvider.notifier).state = tickets;
+
+  void addTicket(Event event) {
+    final List<Event> tickets = List.from(read(ticketsOwnedProvider));
+    tickets.add(event);
+    read(ticketsOwnedProvider.notifier).state = tickets;
+  }
+
+  bool alreadyPurchased(Event event) => tickets.contains(event) ? true : false;
 }
