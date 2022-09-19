@@ -1,12 +1,12 @@
 <p align="center">
-    <img src="https://drive.google.com/uc?export=view&id=160bPF2MibRXPcWpAqIphHIS2ZpWnJXJp">
+    <img src="readme_demos/poster.png">
 </p>
 
 <h1 align="center">
  Technologies 💡
 </h1>
 <p align="center">
-    <img src="https://drive.google.com/uc?export=view&id=1p8gUzHGik8YRnZ5FW6-RpWsOf3jfCiGX">
+    <img src="readme_demos/technologies.png">
 </p>
 
 <h1 align="center">
@@ -44,10 +44,10 @@ You can download the latest android version of the app from [here](https://drive
     Demo 💾
 </h1>
 <p float="left" align="center">
-<img src="https://drive.google.com/uc?export=view&id=1jzmzfrk-E9xtYdrF4X0Kgb93LdUmgwaD" width=20% hspace="1%">
-<img src="https://drive.google.com/uc?export=view&id=1B-cIx36K52nM9At70KmLL4rRRnm9U6jf" width=20% hspace="1%">
-<img src="https://drive.google.com/uc?export=view&id=1XecWYKoB6WFQ2Cs7bWl27OwSbEpthINp" width=20% hspace="1%">
-<img src="https://drive.google.com/uc?export=view&id=1oSqriDSDmuGWqrVFg8H5SraO3WpyrUzt" width=20% hspace="1%">
+<img src="readme_demos/home_event_details.gif" width=20% hspace="1%">
+<img src="readme_demos/search.gif" width=20% hspace="1%">
+<img src="readme_demos/buy_ticket.gif" width=20% hspace="1%">
+<img src="readme_demos/settings.gif" width=20% hspace="1%">
 </p>
 
 
