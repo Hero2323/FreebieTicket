@@ -81,6 +81,7 @@ class TicketsScreen extends StatelessWidget {
               ),
             ),
           )
+        // Todo: Make it a component widget
         : Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
