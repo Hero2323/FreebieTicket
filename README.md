@@ -1,19 +1,29 @@
-# ticket_app
+<p align="center">
+ ![image](https://drive.google.com/uc?export=view&id=160bPF2MibRXPcWpAqIphHIS2ZpWnJXJp)
+</p>
 
-A new Flutter project.
+<h1 align="center">
+ Technologies 💡
+</h1>
 
-## Getting Started
+<h1 align="center">
+ Prerequisites 📚
+</h1>
+Make sure you meet the following requirements:
 
-![Alt text](assets/images/poster.png?raw=true "Title")
+* You have flutter installed on your machine (updating to the latest version is preferred), if not, you can install it from [here](https://flutter.dev).
+* Your IDE has all the official flutter/dart plugins.
+* Your device/emulator is running android with a minimum sdk version of 30
 
+<h1 align="center">
+ How to Run 🚀
+</h1>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Install the needed dependencies using
+```
+flutter pub get
+```
+Then with your emulator open, follow up with
+```
+flutter run
+```
