@@ -1,4 +1,5 @@
 import 'package:ticket_app/domain/models/organizer.dart';
+import 'event_latlng.dart';
 import 'update.dart';
 
 class Event {
@@ -14,6 +15,8 @@ class Event {
   final List<int> discountPrices;
   final List<Update> updates;
   final Organizer organizer;
+  final EventLatLng eventLatLng;
+  final String label;
 
   Event({
     required this.id,
@@ -28,6 +31,8 @@ class Event {
     required this.organizer,
     required this.discountPrices,
     required this.updates,
+    required this.eventLatLng,
+    required this.label,
   });
 
   Event.fromJson(Map<String, dynamic> json)
@@ -51,5 +56,7 @@ class Event {
         updates = (json['updates'] as List<dynamic>?)!
             .map((updateMap) =>
                 Update.fromJson(updateMap as Map<String, dynamic>))
-            .toList();
+            .toList(),
+        label = json['label'],
+        eventLatLng = EventLatLng.fromJson(json['latlng']);
 }

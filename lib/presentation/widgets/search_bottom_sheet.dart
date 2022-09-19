@@ -9,13 +9,17 @@ import '../styles/app_colors.dart';
 import 'custom_textfield.dart';
 import 'popular_searched_list.dart';
 
-class SearchBottomSheet extends StatelessWidget {
-  SearchBottomSheet({Key? key}) : super(key: key);
+class SearchBottomSheet extends ConsumerWidget {
+  final String markerId;
+  SearchBottomSheet({
+    Key? key,
+    required this.markerId,
+  }) : super(key: key);
   final DraggableScrollableController controller =
       DraggableScrollableController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DraggableScrollableSheet(
       initialChildSize: 0.18,
       maxChildSize: 1,
@@ -47,69 +51,65 @@ class SearchBottomSheet extends StatelessWidget {
                               children: [
                                 const SizedBox(height: 16),
                                 const BottomSheetFullHeader(),
-                                Consumer(
-                                  builder: (_, ref, child) {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        BottomSheetTitleAndContent(
-                                          title: 'Events',
-                                          contentWidget: fakeEventsList
-                                              .getRange(
-                                                  0,
-                                                  ref.updateEventsNumber
-                                                      ? fakeEventsList.length
-                                                      : 2)
-                                              .map((event) {
-                                            return SearchEvent(event: event);
-                                          }).toList(),
-                                        ),
-                                        OutlinedButton(
-                                          onPressed: () {
-                                            ref.toggleEventsNumber();
-                                          },
-                                          child: Text(
-                                            ref.updateEventsNumber
-                                                ? 'Show less events'
-                                                : 'Show more events',
-                                            style: const TextStyle(
-                                                color: AppColors.red),
-                                          ),
-                                        ),
-                                        BottomSheetTitleAndContent(
-                                          title: 'Places',
-                                          contentWidget: fakePlacesList
-                                              .getRange(
-                                                  0,
-                                                  ref.updatePlacesNumber
-                                                      ? fakePlacesList.length
-                                                      : 2)
-                                              .map((place) {
-                                            return SearchPlace(place: place);
-                                          }).toList(),
-                                        ),
-                                        OutlinedButton(
-                                          onPressed: () {
-                                            ref.togglePlacesNumber();
-                                          },
-                                          child: Text(
-                                            ref.updatePlacesNumber
-                                                ? 'Show less places'
-                                                : 'Show more places',
-                                            style: const TextStyle(
-                                                color: AppColors.red),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  },
+                                Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    BottomSheetTitleAndContent(
+                                      title: 'Events',
+                                      contentWidget: ref.sharedEvents
+                                          .getRange(
+                                              0,
+                                              ref.updateEventsNumber
+                                                  ? ref.sharedEvents.length
+                                                  : 2)
+                                          .map((event) {
+                                        return SearchEvent(event: event);
+                                      }).toList(),
+                                    ),
+                                    OutlinedButton(
+                                      onPressed: () {
+                                        ref.toggleEventsNumber();
+                                      },
+                                      child: Text(
+                                        ref.updateEventsNumber
+                                            ? 'Show less events'
+                                            : 'Show more events',
+                                        style: const TextStyle(
+                                            color: AppColors.red),
+                                      ),
+                                    ),
+                                    BottomSheetTitleAndContent(
+                                      title: 'Places',
+                                      contentWidget: fakePlacesList
+                                          .getRange(
+                                              0,
+                                              ref.updatePlacesNumber
+                                                  ? fakePlacesList.length
+                                                  : 2)
+                                          .map((place) {
+                                        return SearchPlace(place: place);
+                                      }).toList(),
+                                    ),
+                                    OutlinedButton(
+                                      onPressed: () {
+                                        ref.togglePlacesNumber();
+                                      },
+                                      child: Text(
+                                        ref.updatePlacesNumber
+                                            ? 'Show less places'
+                                            : 'Show more places',
+                                        style: const TextStyle(
+                                            color: AppColors.red),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 8),
                               ],
                             )
-                          : SearchEvent(event: fakeEventsList[0])
-                      : SearchEvent(event: fakeEventsList[0]),
+                          : SearchEvent(event: ref.sharedEvents[0])
+                      : SearchEvent(event: ref.sharedEvents[0]),
                 ],
               ),
             ),
@@ -173,12 +173,14 @@ class BottomSheetTitleAndContent extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 12.0, bottom: 8),
-          child: Text(title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: AppColors.black,
-                fontSize: 20,
-              )),
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppColors.black,
+              fontSize: 20,
+            ),
+          ),
         ),
         ...contentWidget,
       ],

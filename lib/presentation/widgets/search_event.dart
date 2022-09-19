@@ -22,7 +22,7 @@ class SearchEvent extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(16)),
             image: DecorationImage(
-              image: AssetImage(event.image),
+              image: NetworkImage(event.image),
               fit: BoxFit.fill,
             ),
           ),
@@ -42,11 +42,14 @@ class SearchEvent extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    event.date,
-                    style: TextStyle(
-                      color: AppColors.black.withOpacity(0.6),
-                      fontSize: 12,
+                  Expanded(
+                    child: Text(
+                      event.date,
+                      style: TextStyle(
+                        color: AppColors.black.withOpacity(0.6),
+                        fontSize: 12,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],

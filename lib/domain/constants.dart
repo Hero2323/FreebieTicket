@@ -23,3 +23,10 @@ const CameraPosition initialLocation = CameraPosition(
   target: LatLng(30.04443664782354, 31.235684551378952),
   zoom: 18,
 );
+
+enum ConnectionStates {
+  loading,
+  timeout,
+  connected,
+  error,
+}

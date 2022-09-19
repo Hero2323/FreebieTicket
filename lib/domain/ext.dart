@@ -1,7 +1,14 @@
-import 'package:flutter/material.dart' show ThemeData;
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart'
+    show LatLng, Marker, MarkerId;
+import 'package:ticket_app/domain/constants.dart';
+
 import '../presentation/payment/payment_states.dart';
+import '../presentation/styles/app_colors.dart';
 import '../presentation/styles/app_theme.dart';
+import 'models/event.dart';
 import 'providers.dart';
 
 extension CurrentTheme on WidgetRef {
@@ -15,8 +22,22 @@ extension CurrentTheme on WidgetRef {
 extension BottomNavigationBarIndex on WidgetRef {
   int get bottomBarIndex => watch(bottomBarIndexProvider);
 
-  void setBottomBarIndex(int index) =>
-      read(bottomBarIndexProvider.notifier).state = index;
+  void setBottomBarIndex(int index) {
+    read(bottomBarIndexProvider.notifier).state = index;
+    if (index == 2) {
+      SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: AppColors.transparent,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
+      ));
+    } else {
+      SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: AppColors.white,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+      ));
+    }
+  }
 }
 
 extension SelectedFilter on WidgetRef {
@@ -95,10 +116,63 @@ extension MoreUpcomingEvents on WidgetRef {
 }
 
 extension EventsLoaded on WidgetRef {
-  bool get eventsLoaded => watch(eventsLoadedProvider);
+  ConnectionStates get eventsLoaded => watch(eventsLoadedProvider);
 
-  void setEventsLoaded(bool value) =>
+  void setEventsLoaded(ConnectionStates value) =>
       read(eventsLoadedProvider.notifier).state = value;
+
+  bool get isEventsLoaded =>
+      watch(eventsLoadedProvider) == ConnectionStates.connected;
+  bool get isEventsLoading =>
+      watch(eventsLoadedProvider) == ConnectionStates.loading;
+  bool get isEventsError =>
+      watch(eventsLoadedProvider) == ConnectionStates.error;
+  bool get isEventsTimeout =>
+      watch(eventsLoadedProvider) == ConnectionStates.timeout;
+}
+
+extension WillTextOverflow on String {
+  bool willTextOverflow(TextStyle style,
+      {double minWidth = 0,
+      double maxWidth = double.infinity,
+      int maxLines = 2}) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: this, style: style),
+      maxLines: maxLines,
+      textDirection: TextDirection.ltr,
+    )..layout(minWidth: minWidth, maxWidth: maxWidth);
+    return textPainter.didExceedMaxLines;
+  }
+}
+
+extension SharedEvents on WidgetRef {
+  List<Event> get sharedEvents => watch(sharedEventsProvider);
+
+  void setSharedEvents(List<Event> events) =>
+      read(sharedEventsProvider.notifier).state = events;
+
+  String getMarkerIcon(Event event) {
+    if (event.label == 'sports')
+      return 'assets/images/sport_marker.png';
+    else if (event.label == 'art')
+      return 'assets/images/sport_marker.png';
+    else
+      return 'assets/images/music_marker.png';
+  }
+
+  Map<String, Marker> initMarkersMap() => {
+        for (final event in sharedEvents)
+          '${event.id}': Marker(
+            markerId: MarkerId('${event.id}'),
+            position: LatLng(event.eventLatLng.lat, event.eventLatLng.lng),
+          )
+      };
+
+  Map<String, Marker> get markersMap => watch(markersMapProvider);
+
+  void setMarker(Marker marker) {
+    read(markersMapProvider.notifier).state[marker.markerId.value] = marker;
+  }
 }
 
 extension PaymentStatesExtension on WidgetRef {
@@ -112,4 +186,26 @@ extension PaymentStatesExtension on WidgetRef {
   bool get isPaymentStateSuccess => paymentState is SuccessPaymentState;
 
   bool get isPaymentStateError => paymentState is ErrorPaymentState;
+}
+
+extension FilteredUpcomingEvents on WidgetRef {
+  List<Event> getFilteredUpcomingEvents(List<Event> events) =>
+      watch(filteredUpcomingEventsProvider(events));
+}
+
+extension Tickets on WidgetRef {
+  List<Event> get tickets => watch(ticketsOwnedProvider);
+
+  List<Event> get filteredTickets => watch(filteredTicketsOwnedProvider);
+
+  void setTickets(List<Event> tickets) =>
+      read(ticketsOwnedProvider.notifier).state = tickets;
+
+  void addTicket(Event event) {
+    final List<Event> tickets = List.from(read(ticketsOwnedProvider));
+    tickets.add(event);
+    read(ticketsOwnedProvider.notifier).state = tickets;
+  }
+
+  bool alreadyPurchased(Event event) => tickets.contains(event) ? true : false;
 }

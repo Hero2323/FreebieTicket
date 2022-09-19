@@ -20,12 +20,12 @@ class FilterItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: selected ? AppColors.grey.withOpacity(0.3) : AppColors.white,
+          color: AppColors.white,
           borderRadius: const BorderRadius.all(Radius.circular(30)),
           boxShadow: [
             BoxShadow(
-              color: AppColors.grey.withOpacity(0.8),
-              spreadRadius: 0.5, //extend the shadow
+              color: selected ? filter.color : AppColors.grey.withOpacity(0.8),
+              spreadRadius: selected ? 2 : 0.5, //extend the shadow
             ),
           ],
         ),
@@ -35,7 +35,11 @@ class FilterItem extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundColor: filter.color.withOpacity(0.1),
-                child: SvgPicture.asset(filter.image),
+                child: SvgPicture.asset(
+                  filter.image,
+                  height: 18,
+                  color: filter.color,
+                ),
               ),
               const SizedBox(width: 10),
               Text(

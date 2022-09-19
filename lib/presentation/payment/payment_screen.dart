@@ -5,15 +5,15 @@ import 'package:ticket_app/domain/providers.dart';
 import 'package:ticket_app/presentation/payment/payment_states.dart';
 
 import 'package:ticket_app/presentation/payment/payment_viewmodel.dart';
-import 'package:ticket_app/presentation/router/router_names.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
+import '../../domain/models/event.dart';
 import '../widgets/order_placed_dialog.dart';
 import '../widgets/payment_option.dart';
 
 class PaymentScreen extends ConsumerStatefulWidget {
-  const PaymentScreen({required this.price, super.key});
+  const PaymentScreen({required this.event, super.key});
 
-  final int price;
+  final Event event;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
@@ -36,11 +36,18 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           );
           break;
         case SuccessPaymentState:
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              RouterNames.mainRoute, (Route<dynamic> route) => false);
+          // Navigator.of(context).pushNamedAndRemoveUntil(
+          //     RouterNames.mainRoute, (Route<dynamic> route) => false);
+          ref.addTicket(widget.event);
+          Navigator.of(context).pop();
           showDialog(
-              context: context,
-              builder: (BuildContext context) => const OrderPlacedDialog());
+            context: context,
+            builder: (BuildContext context) => const OrderPlacedDialog(),
+          );
+          // Future.delayed(Duration(milliseconds: 500)).then((value) {
+          //   Navigator.of(context).pop();
+          //   Navigator.of(context).pop();
+          // });
           break;
       }
     });
@@ -59,7 +66,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       onPressed: () {
                         _viewModel.makeStripePayment(
                           ref,
-                          widget.price.toString(),
+                          widget.event.prices[0].toString(),
                           'USD',
                         );
                       },

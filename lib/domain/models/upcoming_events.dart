@@ -17,4 +17,16 @@ class UpcomingEvents {
         events = (json['events'] as List<dynamic>?)!
             .map((eventMap) => Event.fromJson(eventMap as Map<String, dynamic>))
             .toList();
+
+  UpcomingEvents copyWith({
+    int? noOfEvents,
+    String? date,
+    List<Event>? events,
+  }) {
+    return UpcomingEvents(
+      noOfEvents: noOfEvents ?? this.noOfEvents,
+      date: date ?? this.date,
+      events: events ?? this.events,
+    );
+  }
 }

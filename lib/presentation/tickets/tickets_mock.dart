@@ -1,9 +1,9 @@
+import 'package:ticket_app/domain/models/event_latlng.dart';
+
 import '../../domain/models/event.dart';
-import '../../domain/models/filter.dart';
 import '../../domain/models/organizer.dart';
 import '../../domain/models/update.dart';
 import '../resources/asset_images.dart';
-import '../styles/app_colors.dart';
 
 List<Event> events = [
   Event(
@@ -49,6 +49,8 @@ List<Event> events = [
             'topic and you\'ll get a list of all the related topics.',
       ),
     ],
+    eventLatLng: EventLatLng(lat: 52.2296756, lng: 21.0122287),
+    label: 'music',
   ),
   Event(
     id: 12,
@@ -67,6 +69,8 @@ List<Event> events = [
     ),
     discountPrices: [30, 80],
     updates: [],
+    eventLatLng: EventLatLng(lat: 52.2296756, lng: 21.0122287),
+    label: 'music',
   ),
   Event(
     id: 13,
@@ -93,26 +97,7 @@ List<Event> events = [
             'topic and you\'ll get a list of all the related topics.',
       ),
     ],
-  ),
-];
-
-List<Filter> filters = [
-  Filter(
-    id: 1,
-    color: AppColors.red,
-    image: AssetImages.yourAreaIcon,
-    name: 'Your Area'.toUpperCase(),
-  ),
-  Filter(
-    id: 2,
-    color: AppColors.blue,
-    image: AssetImages.musicIcon,
-    name: 'Music'.toUpperCase(),
-  ),
-  Filter(
-    id: 3,
-    color: AppColors.orange,
-    image: AssetImages.sportsIcon,
-    name: 'Sports'.toUpperCase(),
+    eventLatLng: EventLatLng(lat: 52.2296756, lng: 21.0122287),
+    label: 'music',
   ),
 ];

@@ -3,22 +3,24 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ticket_app/presentation/widgets/popular_searched_list.dart';
+import 'package:ticket_app/domain/ext.dart';
 
+import '../widgets/popular_searched_list.dart';
 import '../../domain/constants.dart';
 import '../styles/app_colors.dart';
 import '../widgets/custom_textfield.dart';
 import '../widgets/search_bottom_sheet.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   addMarker(markerID, context, icon) {
     _getAssetIcon(context, icon).then(
       (BitmapDescriptor icon) {
@@ -28,13 +30,31 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void _setMarkerIcon(String markerID, BitmapDescriptor assetIcon) {
-    final Marker marker = markers[markerID]!;
+    final Marker marker = Marker(
+      markerId: MarkerId(markerID),
+      position: ref.markersMap[markerID]!.position,
+      onTap: () => showModalBottomSheet(
+        context: context,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        isScrollControlled: true,
+        isDismissible: true,
+        builder: (context) {
+          return SearchBottomSheet(
+            markerId: markerID,
+          );
+        },
+      ),
+    );
     if (mounted) {
-      setState(() {
-        markers[markerID] = marker.copyWith(
-          iconParam: assetIcon,
-        );
-      });
+      setState(
+        () {
+          ref.setMarker(
+            marker.copyWith(
+              iconParam: assetIcon,
+            ),
+          );
+        },
+      );
     }
   }
 
@@ -60,67 +80,16 @@ class _SearchScreenState extends State<SearchScreen> {
     return await bitmapIcon.future;
   }
 
-  _onMarkerTapped(markerId) {
-    showModalBottomSheet(
-        context: context,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        isScrollControlled: true,
-        isDismissible: true,
-        builder: (context) {
-          return SearchBottomSheet();
-        });
-  }
-
-  late final Map<String, Marker> markers = {
-    '1': Marker(
-      markerId: const MarkerId('1'),
-      position: const LatLng(30.04443664782354, 31.235684551378952),
-      onTap: () {
-        _onMarkerTapped('1');
-      },
-    ),
-    '2': Marker(
-      markerId: const MarkerId('2'),
-      position: const LatLng(30.04525851392157, 31.2354689118122),
-      onTap: () {
-        _onMarkerTapped('2');
-      },
-    ),
-    '3': Marker(
-      markerId: const MarkerId('3'),
-      position: const LatLng(30.043367139528865, 31.235206718115393),
-      onTap: () {
-        _onMarkerTapped('3');
-      },
-    ),
-    '4': Marker(
-      markerId: const MarkerId('4'),
-      position: const LatLng(30.044982915900537, 31.23656138554891),
-      onTap: () {
-        _onMarkerTapped('4');
-      },
-    ),
-    '5': Marker(
-      markerId: const MarkerId('5'),
-      position: const LatLng(30.04460464285852, 31.234569961994566),
-      onTap: () {
-        _onMarkerTapped('5');
-      },
-    ),
-  };
-
-  addFakeMarkers(context) {
-    addMarker('1', context, 'assets/images/music_marker.png');
-    addMarker('2', context, 'assets/images/sport_marker.png');
-    addMarker('3', context, 'assets/images/music_marker.png');
-    addMarker('4', context, 'assets/images/sport_marker.png');
-    addMarker('5', context, 'assets/images/music_marker.png');
+  addFakeMarkers(BuildContext context, WidgetRef ref) {
+    for (var event in ref.sharedEvents) {
+      addMarker(event.id.toString(), context, ref.getMarkerIcon(event));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    addFakeMarkers(context);
-
+    addFakeMarkers(context, ref);
+    ref.markersMap;
     return SafeArea(
       child: Stack(
         children: [
@@ -129,7 +98,7 @@ class _SearchScreenState extends State<SearchScreen> {
             myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
             mapType: MapType.normal,
-            markers: markers.values.toSet(),
+            markers: ref.markersMap.values.toSet(),
             onMapCreated: (GoogleMapController controller) {
               controller.setMapStyle(mapStyle);
             },
