@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart'
-    show LatLng, Marker, MarkerId;
+import 'package:google_maps_flutter/google_maps_flutter.dart' show Marker;
 import 'package:ticket_app/domain/constants.dart';
 
 import '../presentation/styles/app_theme.dart';

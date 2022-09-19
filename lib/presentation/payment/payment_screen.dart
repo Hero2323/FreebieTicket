@@ -5,7 +5,6 @@ import 'package:ticket_app/domain/providers.dart';
 import 'package:ticket_app/presentation/payment/payment_states.dart';
 
 import 'package:ticket_app/presentation/payment/payment_viewmodel.dart';
-import 'package:ticket_app/presentation/router/router_names.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 import '../../domain/models/event.dart';
 import '../widgets/order_placed_dialog.dart';

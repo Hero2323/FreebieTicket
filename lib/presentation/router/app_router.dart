@@ -6,8 +6,6 @@ import '../contact_us/contact_us_screen.dart';
 import '../event_details/event_details_screen.dart';
 import '../styles/app_colors.dart';
 import '../main/main_screen.dart';
-import '../main/main_screen.dart';
-import '../event_details/event_details_screen.dart';
 import '../payment/payment_screen.dart';
 import 'router_names.dart';
 

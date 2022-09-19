@@ -5,11 +5,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart'
     show LatLng, Marker, MarkerId;
 import 'package:ticket_app/domain/constants.dart';
 
-import '../presentation/resources/asset_images.dart';
 import '../presentation/payment/payment_states.dart';
 import '../presentation/styles/app_colors.dart';
 import '../presentation/styles/app_theme.dart';
-import '../presentation/widgets/search_bottom_sheet.dart';
 import 'models/event.dart';
 import 'providers.dart';
 

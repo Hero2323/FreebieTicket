@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/models/event.dart';
-import '../resources/asset_images.dart';
 import '../router/router_names.dart';
 import '../styles/app_colors.dart';
 

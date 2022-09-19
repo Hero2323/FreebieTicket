@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ticket_app/domain/constants.dart';
 
 import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/domain/providers.dart';

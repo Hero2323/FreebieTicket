@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:ticket_app/presentation/styles/app_colors.dart';
 
-import '../resources/asset_images.dart';
 import '../router/router_names.dart';
 
 class ProfileScreen extends StatelessWidget {

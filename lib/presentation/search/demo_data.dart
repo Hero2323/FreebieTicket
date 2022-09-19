@@ -1,7 +1,4 @@
-import '../../domain/models/event.dart';
-import '../../domain/models/organizer.dart';
 import '../../domain/models/place.dart';
-import '../../domain/models/update.dart';
 import '../resources/asset_images.dart';
 
 List<String> popularSearched = [

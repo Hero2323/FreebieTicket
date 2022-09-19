@@ -7,7 +7,6 @@ import '../../domain/models/filter.dart';
 import '../resources/asset_images.dart';
 import '../styles/app_colors.dart';
 import '../widgets/filter_item.dart';
-import 'tickets_mock.dart';
 
 class TicketsScreen extends ConsumerWidget {
   const TicketsScreen({Key? key}) : super(key: key);
