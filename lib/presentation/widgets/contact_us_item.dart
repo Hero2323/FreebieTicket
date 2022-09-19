@@ -8,6 +8,7 @@ import '../../domain/models/developer.dart';
 
 class ContactUsItem extends StatelessWidget {
   final Developer developer;
+
   const ContactUsItem({
     super.key,
     required this.developer,
@@ -89,18 +90,18 @@ class ContactUsItem extends StatelessWidget {
                           ),
                         ),
                         onTap: () => launchUrlString(
-                          'mailto:${developer.email}?',
-                          mode: LaunchMode.externalApplication,
-                        ),
+                            'mailto:${developer.email}?',
+                            mode: LaunchMode.externalApplication),
                       ),
                       InkWell(
                         child: Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: Icon(
-                              Icons.whatsapp,
-                              size: 32,
-                              color: Colors.green,
-                            )),
+                          padding: const EdgeInsets.all(5),
+                          child: SvgPicture.asset(
+                            AssetImages.whatsapp,
+                            height: 28,
+                            color: Colors.green,
+                          ),
+                        ),
                         onTap: () => launchUrlString(
                           'https://wa.me/${developer.phone}',
                           mode: LaunchMode.externalApplication,
