@@ -54,3 +54,19 @@ You can download the latest android version of the app from [here](https://drive
 <h1 align="center">
     Attributions 💚
 </h1> 
+
+## **Template**
+
+Thanks to [symu](https://symu.co/) for providing the template of this project for free.
+
+You can find the template used [here](https://symu.co/freebies/mobile-apps/ticketapp-figma-and-sketch-template/)
+
+## **Other Assets**
+
+Thanks To:
+* [svgrepo](https://www.svgrepo.com/svg/84889/artist-brush)
+* [mailmeteor](https://mailmeteor.com/logos/gmail)
+* [iconmonstr](https://iconmonstr.com/github-1-svg/)
+* <a href="https://www.flaticon.com/free-icons/miscellaneous" title="miscellaneous icons">Miscellaneous icons created by Freepik - Flaticon</a>
+
+For Providing additional that were used in developing the app. 
