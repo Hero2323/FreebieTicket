@@ -47,7 +47,7 @@ List<Developer> developers = [
     name: 'Ammar Elgml',
     title: 'Flutter Developer',
     email: 'eng.amaarelgml@gmail.com',
-    github: 'https://github.com/AmaarElgml',
+    github: 'https://github.com/AmmarElgml',
     linkedin: 'https://www.linkedin.com/in/ammar-elgml-5a43381aa/',
     phone: '+201010256390',
     image: 'assets/images/ammar.jpeg',
