@@ -104,3 +104,6 @@ List<Filter> filters = [
     name: 'Sports'.toUpperCase(),
   ),
 ];
+
+// TODO: make sure that the build.yaml works
+// TODO: Added attributions for the design and icons/images
