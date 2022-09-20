@@ -12,7 +12,7 @@
 * Search & view events on a google maps display.
 
 <h1 align="center">
-    Demo 💾
+    Demo 💾 (The gifs may take time to load...)
 </h1>
 <p float="left" align="center">
 <img src="readme_demos/home_event_details.gif" width=20% hspace="1%">
