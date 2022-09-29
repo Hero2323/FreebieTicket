@@ -90,52 +90,68 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   Widget build(BuildContext context) {
     addFakeMarkers(context, ref);
     ref.markersMap;
-    return SafeArea(
-      child: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: initialLocation,
-            myLocationButtonEnabled: false,
-            zoomControlsEnabled: false,
-            mapType: MapType.normal,
-            markers: ref.markersMap.values.toSet(),
-            onMapCreated: (GoogleMapController controller) {
-              controller.setMapStyle(mapStyle);
-            },
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                  AppColors.white,
-                  AppColors.white.withOpacity(0.1),
-                ])),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CustomTextField(
-                  hint: 'Event name, artist, place',
-                  controller: TextEditingController(),
-                  prefIcon: Icon(Icons.search,
-                      color: AppColors.grey.withOpacity(0.5)),
-                ),
-                const SizedBox(height: 10),
-                const PopularSearchedList(),
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.gps_fixed,
-                          color: AppColors.red,
-                        )))
-              ],
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            GoogleMap(
+              initialCameraPosition: initialLocation,
+              myLocationButtonEnabled: false,
+              zoomControlsEnabled: false,
+              mapType: MapType.normal,
+              markers: ref.markersMap.values.toSet(),
+              onMapCreated: (GoogleMapController controller) {
+                controller.setMapStyle(mapStyle);
+              },
             ),
-          ),
-        ],
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                    AppColors.white,
+                    AppColors.white.withOpacity(0.1),
+                  ])),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back_ios,
+                          color: AppColors.red,
+                        ),
+                      ),
+                      Expanded(
+                        child: CustomTextField(
+                          hint: 'Event name, artist, place',
+                          controller: TextEditingController(),
+                          prefIcon: Icon(Icons.search,
+                              color: AppColors.grey.withOpacity(0.5)),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  const PopularSearchedList(),
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.gps_fixed,
+                            color: AppColors.red,
+                          )))
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

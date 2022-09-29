@@ -1,7 +1,5 @@
-class PayTabsPaymentRequest {
-  final double amount;
-  final String currency;
-  final String countryCode;
+class PayTabsPaymentResponse {
+  PayTabsPaymentResponse();
 
-  PayTabsPaymentRequest(this.amount, this.currency, this.countryCode);
+  PayTabsPaymentResponse.fromJson(dynamic json);
 }

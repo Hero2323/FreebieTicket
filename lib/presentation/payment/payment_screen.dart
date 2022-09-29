@@ -36,18 +36,12 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           );
           break;
         case SuccessPaymentState:
-          // Navigator.of(context).pushNamedAndRemoveUntil(
-          //     RouterNames.mainRoute, (Route<dynamic> route) => false);
           ref.addTicket(widget.event);
           Navigator.of(context).pop();
           showDialog(
             context: context,
             builder: (BuildContext context) => const OrderPlacedDialog(),
           );
-          // Future.delayed(Duration(milliseconds: 500)).then((value) {
-          //   Navigator.of(context).pop();
-          //   Navigator.of(context).pop();
-          // });
           break;
       }
     });
@@ -64,11 +58,15 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                 : Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        _viewModel.makeStripePayment(
-                          ref,
-                          widget.event.prices[0].toString(),
-                          'USD',
-                        );
+                        // Stripe Payment
+                        // _viewModel.makeStripePayment(
+                        //   ref,
+                        //   widget.event.prices[0].toString(),
+                        //   'USD',
+                        // );
+
+                        // PayTabs Payment
+                        _viewModel.makePayTabsPayment(ref, 100.0);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.red,

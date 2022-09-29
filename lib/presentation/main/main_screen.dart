@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ticket_app/domain/ext.dart';
 import 'package:ticket_app/presentation/resources/asset_images.dart';
+import 'package:ticket_app/presentation/router/router_names.dart';
 
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
-import '../search/search_screen.dart';
 import '../styles/app_colors.dart';
 import '../tickets/tickets_screen.dart';
 
@@ -16,17 +16,17 @@ class MainScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: ref.bottomBarIndex == 0
-          ? AppBar(
-              title: const Text('Home'),
+      appBar: ref.bottomBarIndex == 1
+          ? null
+          : AppBar(
+              title: Text(_title[ref.bottomBarIndex]),
               centerTitle: true,
-            )
-          : ref.bottomBarIndex == 3
-              ? AppBar(
-                  title: const Text('Settings'),
-                  centerTitle: true,
-                )
-              : null,
+              actions: [
+                IconButton(onPressed: () {
+                  Navigator.pushNamed(context, RouterNames.searchRoute);
+                }, icon: Icon(Icons.search, color: AppColors.black)),
+              ],
+            ),
       body: _tabViews[ref.bottomBarIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: ref.bottomBarIndex,
@@ -36,11 +36,6 @@ class MainScreen extends ConsumerWidget {
           BottomNavigationBarItem(
             activeIcon: Image.asset(AssetImages.homeActive),
             icon: Image.asset(AssetImages.homeInactive),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Image.asset(AssetImages.searchActive),
-            icon: Image.asset(AssetImages.searchInactive),
             label: '',
           ),
           BottomNavigationBarItem(
@@ -64,7 +59,12 @@ class MainScreen extends ConsumerWidget {
 
 List<Widget> _tabViews = [
   const HomeScreen(),
-  const SearchScreen(),
   const TicketsScreen(),
   const ProfileScreen(),
+];
+
+List<String> _title = [
+  'Home',
+  'Tickets',
+  'Profile',
 ];

@@ -2,6 +2,7 @@ const String imagesBaseUrl = 'assets/images/';
 const String svgBaseUrl = 'assets/svgs/';
 
 class AssetImages {
+  static const String appLogo = 'assets/app_logo.png';
   static const String filterIcon = '${svgBaseUrl}filter.svg';
   static const String musicIcon = '${svgBaseUrl}music.svg';
   static const String sportsIcon = '${svgBaseUrl}sports.svg';
